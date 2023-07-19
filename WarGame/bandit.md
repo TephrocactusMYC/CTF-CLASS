@@ -1143,3 +1143,275 @@ discord or IRC.
 Connection to localhost closed.
 bandit25@bandit:~$
 ```
+这一步需要知道etc/passwd的内容，这里有个[中文博客](https://blog.csdn.net/dearsq/article/details/52586320)
+```
+bandit25@bandit:~$ cat /etc/passwd | grep "bandit26"
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit25@bandit:~$ cat /usr/bin/showtext
+#!/bin/sh
+
+export TERM=linux
+
+exec more ~/text.txt
+exit 0
+bandit25@bandit:~$
+```
+发现使用more展示，这里就可以把窗口缩小，让他一下子展示不完需要翻页即可，然后进入vim模式就可以进行搜索啊、编辑啊之类的事了，就解决了。
+```
+:r /etc/bandit_pass/bandit26
+c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
+```
+# level27
+这一题和level26一样，还得缩小terminal，这个不会，看的网上的题解。
+```
+:set shell sh=/bin/sh
+:sh
+$ ll
+/bin/sh: 1: ll: not found
+$ ls -al
+total 44
+drwxr-xr-x  3 root     root      4096 Apr 23 18:04 .
+drwxr-xr-x 70 root     root      4096 Apr 23 18:05 ..
+-rw-r--r--  1 root     root       220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root     root      3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root     root       807 Jan  6  2022 .profile
+drwxr-xr-x  2 root     root      4096 Apr 23 18:04 .ssh
+-rwsr-x---  1 bandit27 bandit26 14876 Apr 23 18:04 bandit27-do
+-rw-r-----  1 bandit26 bandit26   258 Apr 23 18:04 text.txt
+$ file bandit27-do
+bandit27-do: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=c148b21f7eb7e816998f07490c8007567e51953f, for GNU/Linux 3.2.0, not stripped
+$ ./bandit27-do
+Run a command as another user.
+  Example: ./bandit27-do id
+$ ./bandit27-do cat /etc/bandit_pass/bandit27
+YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+```
+# level28
+使用git仓库
+```
+bandit27@bandit:/tmp/a$ git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+Cloning into 'repo'...
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit27/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit27-git@localhost's password:
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+bandit27@bandit:/tmp/a$ ll
+total 10564
+drwxrwxr-x   3 bandit27 bandit27     4096 Jul 19 02:08 ./
+drwxrwx-wt 317 root     root     10801152 Jul 19 02:08 ../
+drwxrwxr-x   3 bandit27 bandit27     4096 Jul 19 02:08 repo/
+bandit27@bandit:/tmp/a$ cd repo/
+bandit27@bandit:/tmp/a/repo$ ll
+total 16
+drwxrwxr-x 3 bandit27 bandit27 4096 Jul 19 02:08 ./
+drwxrwxr-x 3 bandit27 bandit27 4096 Jul 19 02:08 ../
+drwxrwxr-x 8 bandit27 bandit27 4096 Jul 19 02:08 .git/
+-rw-rw-r-- 1 bandit27 bandit27   68 Jul 19 02:08 README
+bandit27@bandit:/tmp/a/repo$ cat README
+The password to the next level is: AVanL161y9rsbcJIsFHuw35rjaOM19nR
+bandit27@bandit:/tmp/a/repo$
+```
+# level29
+还是老规矩
+```
+bandit28@bandit:/tmp/b$ git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+Cloning into 'repo'...
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit28/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit28/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit28-git@localhost's password:
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 9 (delta 2), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (9/9), done.
+Resolving deltas: 100% (2/2), done.
+bandit28@bandit:/tmp/b$ cd repo/
+bandit28@bandit:/tmp/b/repo$ ll
+total 16
+drwxrwxr-x 3 bandit28 bandit28 4096 Jul 19 02:11 ./
+drwxrwxr-x 3 bandit28 bandit28 4096 Jul 19 02:11 ../
+drwxrwxr-x 8 bandit28 bandit28 4096 Jul 19 02:11 .git/
+-rw-rw-r-- 1 bandit28 bandit28  111 Jul 19 02:11 README.md
+bandit28@bandit:/tmp/b/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/b/repo$ git log
+commit 899ba88df296331cc01f30d022c006775d467f28 (HEAD -> master, origin/master, origin/HEAD)
+Author: Morla Porla <morla@overthewire.org>
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    fix info leak
+
+commit abcff758fa6343a0d002a1c0add1ad8c71b88534
+Author: Morla Porla <morla@overthewire.org>
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    add missing data
+
+commit c0a8c3cf093fba65f4ee0e1fe2a530b799508c78
+Author: Ben Dover <noone@overthewire.org>
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    initial commit of README.md
+```
+**这是典型的git泄露**
+```
+bandit28@bandit:/tmp/b/repo$ git diff 899b abcf
+diff --git a/README.md b/README.md
+index 5c6457b..b302105 100644
+--- a/README.md
++++ b/README.md
+@@ -4,5 +4,5 @@ Some notes for level29 of bandit.
+ ## credentials
+
+ - username: bandit29
+-- password: xxxxxxxxxx
++- password: tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+
+bandit28@bandit:/tmp/b/repo$
+```
+# level30
+下载下来以后，一开始以为是stash，然后发现不是，那么查看别的分支。
+```
+bandit29@bandit:/tmp/c/repo$ git stash list
+bandit29@bandit:/tmp/c/repo$ git branch  -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/dev
+  remotes/origin/master
+  remotes/origin/sploits-dev
+bandit29@bandit:/tmp/c/repo$
+```
+然后切换分支即可
+```
+bandit29@bandit:/tmp/c/repo$ git checkout dev
+Branch 'dev' set up to track remote branch 'dev' from 'origin'.
+Switched to a new branch 'dev'
+bandit29@bandit:/tmp/c/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+
+bandit29@bandit:/tmp/c/repo$
+```
+# level31
+这个不会，看了一下网上的答案，这玩意儿叫引用，这里是[Git Pro教程](https://git-scm.com/docs/git-show-ref)
+```
+bandit30@bandit:/tmp/d/repo$ git show-ref
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/heads/master
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/remotes/origin/HEAD
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/remotes/origin/master
+831aac2e2341f009e40e46392a4f5dd318483019 refs/tags/secret
+bandit30@bandit:/tmp/d/repo$ git show 831a
+OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+bandit30@bandit:/tmp/d/repo$
+```
+# level32
+push文件
+```
+bandit31@bandit:/tmp/d/repo$ git add -f ./key.txt
+bandit31@bandit:/tmp/d/repo$ git commit -m "add key.txt"
+[master 462b8a5] add key.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 key.txt
+bandit31@bandit:/tmp/d/repo$ git push
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit31/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit31/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhost's password:
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 324 bytes | 324.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: ### Attempting to validate files... ####
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Well done! Here is the password for the next level:
+remote: rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost:2220/home/bandit31-git/repo
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
+bandit31@bandit:/tmp/d/repo$
+```
+# level33
+这个不会，看的[答案](https://mayadevbe.me/posts/overthewire/bandit/level33/)
+```
+>> $0
+$ cat /etc/bandit_pass/bandit33
+odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
+```
+# 彩蛋了
+```
+bandit33@bandit:~$ cat README.txt
+Congratulations on solving the last level of this game!
+
+At this moment, there are no more levels to play in this game. However, we are constantly working
+on new levels and will most likely expand this game with more levels soon.
+Keep an eye out for an announcement on our usual communication channels!
+In the meantime, you could play some of our other wargames.
+
+If you have an idea for an awesome new level, please let us know!
+bandit33@bandit:~$
+```
+**完结撒花**

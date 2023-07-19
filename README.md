@@ -2,8 +2,8 @@
  * @Author: TephrocactusMYC 2012026@mail.nankai.edu.cn
  * @Date: 2023-07-18 16:08:20
  * @LastEditors: TephrocactusMYC 2012026@mail.nankai.edu.cn
- * @LastEditTime: 2023-07-18 16:48:39
- * @FilePath: \undefinedd:\MYCODE\CTF-CLASS\README.md
+ * @LastEditTime: 2023-07-19 18:34:51
+ * @FilePath: \CTF-CLASS\README.md
  * @Description:
  * Someday, I will discover or cultivate a type of cactus named after me!!!
  * Copyright (c) 2023 by TephrocactusMYC, All Rights Reserved.
@@ -30,10 +30,11 @@
 0 / 21
 # Wargame
 发现的一个小的[安全网站](https://overthewire.org/wargames/)，有几个系列也挺入门，暂时做了bandit
-- [ ] bandit
-Level 25 → Level 26
+- [x] bandit
+前面主要是linux基本操作，后面涉及一些git，适合入门
 - [ ] Natas
-- [ ] Leviathan
+- [x] Leviathan
+题目难度的方差有点儿大，不一定适合新手
 - [ ] Krypton
 - [ ] Narnia
 - [ ] Behemoth
