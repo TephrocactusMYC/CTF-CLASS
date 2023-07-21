@@ -1,13 +1,3 @@
-<!--
- * @Author: TephrocactusMYC 2012026@mail.nankai.edu.cn
- * @Date: 2023-07-19 10:42:03
- * @LastEditors: TephrocactusMYC 2012026@mail.nankai.edu.cn
- * @LastEditTime: 2023-07-19 17:30:10
- * @FilePath: \CTF-CLASS\WarGame\Natas.md
- * @Description:
- * Someday, I will discover or cultivate a type of cactus named after me!!!
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
--->
 # level0
 直接登录，然后查看网页源代码
 ![level0](image-2.png)
@@ -336,10 +326,59 @@ if($key != "") {
 1KFqoJXi6hRaPluAmk8ESDW4fSysRoIg
 ```
 # level11
+代码审计工作如下：
+```
+<?
 
+$defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
+
+function xor_encrypt($in) {
+    $key = '<censored>';
+    $text = $in;
+    $outText = '';
+
+    // Iterate through each character
+    for($i=0;$i<strlen($text);$i++) {
+    $outText .= $text[$i] ^ $key[$i % strlen($key)];
+    }
+
+    return $outText;
+}
+
+function loadData($def) {
+    global $_COOKIE;
+    $mydata = $def;
+    if(array_key_exists("data", $_COOKIE)) {
+    $tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE["data"])), true);
+    if(is_array($tempdata) && array_key_exists("showpassword", $tempdata) && array_key_exists("bgcolor", $tempdata)) {
+        if (preg_match('/^#(?:[a-f\d]{6})$/i', $tempdata['bgcolor'])) {
+        $mydata['showpassword'] = $tempdata['showpassword'];
+        $mydata['bgcolor'] = $tempdata['bgcolor'];
+        }
+    }
+    }
+    return $mydata;
+}
+
+function saveData($d) {
+    setcookie("data", base64_encode(xor_encrypt(json_encode($d))));
+}
+
+$data = loadData($defaultdata);
+
+if(array_key_exists("bgcolor",$_REQUEST)) {
+    if (preg_match('/^#(?:[a-f\d]{6})$/i', $_REQUEST['bgcolor'])) {
+        $data['bgcolor'] = $_REQUEST['bgcolor'];
+    }
+}
+
+saveData($data);
+
+
+
+?>
 ```
 
-```
 # level12
 
 ```
@@ -461,4 +500,6 @@ if($key != "") {
 ```
 
 ```
+
+
 

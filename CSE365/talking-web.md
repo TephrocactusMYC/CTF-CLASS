@@ -1,3 +1,60 @@
+# knoeledge
+重点是http 请求报文，这部分不太涉及响应报文
+一个 http 请求报文由四个部分组成：
+
+1. 请求行（Request-Line）
+2. 请求头部（Request Header Fields）
+3. 回车换行（CRLF）
+4. 消息体（Message Body）
+### 请求行（Request-Line）
+我们来看一开始给的示例的请求行
+```
+POST / HTTP/1.1
+```
+请求行分为了三个部分：
+
+1. 请求方法（Method）
+2. 请求 URI
+3. HTTP 协议版本
+三者之间用空格分隔。
+#### 请求方法
+- GET：获取资源
+- POST：传输实体主体
+- PUT：传输文件
+- HEAD：获得报文首部（相当于GET方法获得的资源去掉正文）
+- DELETE：删除文件
+- OPTIONS：询问支持的方法（客户端问服务器）
+- TRACE：追踪路径
+- OCONNECT：要求用隧道协议连接代理
+- LINK：建立与资源之间的联系
+- UNLINE：断开连接关系
+
+### 请求头部（Request Header Fields）
+这部分由成对的请求头部组成，用来告知服务端请求的更多信息。
+
+**这是未来的重中之重！务必掌握！**
+- Host ：请求的资源在哪个主机的端口上
+- Connection：该请求支持长连接（heep_alive）
+- Content-Length：正文内容长度
+- Content-Type：数据类型
+- User-Agent：声明用户的操作系统和浏览器版本信息
+- Accent：发起了请求
+- Referer：当前页面是从哪个页面跳转过来的
+- Accept-Encoding：接受的编码
+- Accept-Language：接受的语言类型
+- Cookie：用于在客户端存储少量信息，通常用于实现会话（session）功能
+
+### 消息体（Message Body）
+这部分携带了本次请求需要发往服务端的信息，有的 Method 有这部分，而有的 Method 不需要这部分。
+
+比如 get 方法就没有消息体，get 方法一般都是通过 query 来传递参数。
+
+而 post 方法一般就有消息体。
+## 请求头部具体信息
+
+## ref
+- [https://zhuanlan.zhihu.com/p/112060856](https://zhuanlan.zhihu.com/p/112060856)
+- [https://blog.csdn.net/qq_40933663/article/details/90045869](https://blog.csdn.net/qq_40933663/article/details/90045869)
 # Useful cmd
 ```
 /challenge/run
@@ -340,3 +397,5 @@ response = requests.get(url, cookies=cookies)
 
 print(response.text)
 ```
+
+**碎碎念，这个nc是真的难用，还是python好用**

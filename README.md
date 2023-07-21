@@ -1,13 +1,3 @@
-<!--
- * @Author: TephrocactusMYC 2012026@mail.nankai.edu.cn
- * @Date: 2023-07-18 16:08:20
- * @LastEditors: TephrocactusMYC 2012026@mail.nankai.edu.cn
- * @LastEditTime: 2023-07-19 18:34:51
- * @FilePath: \CTF-CLASS\README.md
- * @Description:
- * Someday, I will discover or cultivate a type of cactus named after me!!!
- * Copyright (c) 2023 by TephrocactusMYC, All Rights Reserved.
--->
 # CTF-CLASS
 一个存了很多WP的地方
 # CSE365 sp23
@@ -20,8 +10,8 @@
 0 / 11
 - [ ] Reverse Engineering
 0 / 30
-- [ ] Intercepting Communication
-13 / 14
+- [x] Intercepting Communication
+14 / 14
 - [ ] Cryptography
 2 / 14
 - [ ] Web Security
@@ -44,10 +34,10 @@
 - [ ] Manpage
 - [ ] Drifter
 - [ ] FormulaOne
-# TODO-LIST
-- [ ] CSE466 FALL22（也许我开始做的时候会变成23）
+
+# CSE466 FALL22
     - [ ] Program Misuse
-    0 / 51
+    32 / 51
     - [ ] Program Interaction
     0 / 86
     - [ ] Assembly Crash Course
@@ -70,6 +60,30 @@
     0 / 22
     - [ ] System Exploitation
     0 / 16
+# MalwareAnalysis
+《恶意代码分析实战》一书阅读。
+- [ ] Lab1
+- [ ] Lab2
+- [ ] Lab3
+- [ ] Lab4
+- [ ] Lab5
+- [ ] Lab6
+- [ ] Lab7
+- [ ] Lab8
+- [ ] Lab9
+- [ ] Lab10
+- [ ] Lab11
+- [ ] Lab12
+- [ ] Lab13
+- [ ] Lab14
+- [ ] Lab15
+- [ ] Lab16
+- [ ] Lab17
+- [ ] Lab18
+- [ ] Lab19
+- [ ] Lab20
+- [ ] Lab21
+# TODO-LIST
 - [ ] CSE 494 sp23
     - [ ] Return Oriented Programming
     0 / 30
