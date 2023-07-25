@@ -56,7 +56,7 @@ bandit2@bandit:~$
 # level4
 处理文件夹，正确的方式应该是cd进去再处理，因为在这个阶段还不涉及绝对路径、相对路径之类的概念，但是我懒了
 
-另外，还有个处理隐藏文件，可以使用ls -l命令，在大多数bash钟会把ls -l写成别名ll
+另外，还有个处理隐藏文件，可以使用ls -l命令，在大多数bash中会把ls -al写成别名ll
 
 也可以使用ls -a
 ```
@@ -136,7 +136,7 @@ bandit6@bandit:/$ find / -type f -size 33c -user bandit7 -group bandit6 2>/dev/n
 bandit6@bandit:/$ cat /var/lib/dpkg/info/bandit7.password
 z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 ```
-那个反斜杠是指定为根目录，然后就是大小、用户、组，最后有一个标准错误重定向到黑洞，不写也没事儿，我习惯了
+那个斜杠是指定为根目录，然后就是大小、用户、组，最后有一个标准错误重定向到黑洞，不写也没事儿，我习惯了
 # level8
 这个就是grep
 ```

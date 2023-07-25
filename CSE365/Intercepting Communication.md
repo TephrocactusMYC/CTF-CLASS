@@ -136,7 +136,7 @@ tcpdump -i any port 31337 and src 10.0.0.2 and dst 10.0.0.3 and greater 1 -X
 ```
 我们就把最后一位拼起来就行了，反正这一步大概有点儿烦，可以写脚本，也可以自己手动复制:(
 ```
-# 好吧，我脚本没写对，自己手动复制到，尼玛
+# 好吧，我脚本没写对，自己手动复制的，尼玛
 pwn.college{kNJHOFI1VRpp7QOATsbMSjGQiQp.dRjNzMDL2QjMyMzW}
 ```
 
@@ -170,6 +170,9 @@ nc -l 31337
 *这题看了讲解才会，就卡在不知道怎么看这个标志位上，果然知识处处是盲区*
 
 然后在你监听以后，就会变成PUSH标志位。
+
+///@TODO:
+关于后面的发包，我所有ARP啥的基本上都是发送的广播地址，讲解之中发送给特定地址，没有必要，而且由于我有的关卡住，如果发送给特定的物理网卡，我每次重开挑战都要重新查看，有点儿麻烦。
 ## level8 Manually send an Ethernet packet
 主要是使用scapy
 ```
@@ -394,6 +397,8 @@ sniff(filter="tcp", prn=CallBack, iface='eth0', count=100)
 ```
 pwn.college{A3pb7kfH8On2sOV2_hSlPGWG_P8.dJzNzMDL2QjMyMzW}
 ```
+
+可以看这个[视频讲解](https://youtu.be/nD4IidymLds?list=PL-ymxv0nOtqqW1sDfN6UGUfJTcYqYH9CM&t=194)
 ![level14](image-6.png)
 
 **碎碎念：这个部分其实不太难，重点是学会scapy即可，但是诡异的地方在于必须使用tmux，好像这样才能在一个父线程之下，不然你在另一个shell里面使用python脚本，这个shell里面的tcpdump抓不到东西。这曾经困扰了我很久，别的就没啥了。**

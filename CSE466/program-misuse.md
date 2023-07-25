@@ -111,7 +111,7 @@ pwn.college{onJWxeGXCk8o-LqXlLemr-Xzk2W.0VN0EDL2QjMyMzW}
 /flag (END)
 
 ```
-less没有more好用，记得使用q退出
+less比more好用，记得使用q退出
 ## level4 Lets you directly read the flag!
 ```
 hacker@program-misuse-level-4:/challenge$ ./babysuid_level4
@@ -1214,6 +1214,8 @@ hacker@program-misuse-level-48:~$
 ```
 它这个必须要指定语言，不然不能运行
 
+///@TODO:
+这个一定要去看官方解答，直接在一个程序里面include '/flag'，然后靠报错得到flag，非常有启发
 ## level49 Just straight up wasn't designed to let you read files!
 ```
 hacker@program-misuse-level-49:~$ sh file.sh
