@@ -1,0 +1,1237 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="我的 CTF 之路"><meta name=author content=TephrocactusMYC><link href=https://tephrocactusmyc.github.io/CTF-CLASS/zh/WarGame/bandit/ rel=canonical><link rel=icon href=../../../images/favicon.ico><meta name=generator content="mkdocs-1.4.3, mkdocs-material-7.3.6"><title>bandit - TephrocactusMYC's CTF WP</title><link rel=stylesheet href=../../../assets/stylesheets/main.a57b2b03.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.3f5d1f46.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-KJB4RXSKZG"),document.addEventListener("DOMContentLoaded",function(){"undefined"!=typeof location$&&location$.subscribe(function(t){gtag("config","G-KJB4RXSKZG",{page_path:t.pathname})})})</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-KJB4RXSKZG"></script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple> <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#level0-ssh class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../../ title="TephrocactusMYC's CTF WP" class="md-header__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> TephrocactusMYC's CTF WP </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> bandit </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple aria-label="Switch to dark mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_2 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=cyan data-md-color-accent=deep-purple aria-label="Switch to light mode" type=radio name=__palette id=__palette_2> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg> </label> </form> <div class=md-header__option> <div class=md-select> <button class="md-header__button md-icon" aria-label="Select language"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg> </button> <div class=md-select__inner> <ul class=md-select__list> <li class=md-select__item> <a href=../../../WarGame/bandit/ hreflang=zh class=md-select__link> 简体中文 </a> </li> <li class=md-select__item> <a href=../../../en/WarGame/bandit/ hreflang=en class=md-select__link> English </a> </li> </ul> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <nav class=md-search__options aria-label=Search> <a href=javascript:void(0) class="md-search__icon md-icon" aria-label=Share data-clipboard data-clipboard-text data-md-component=search-share tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg> </a> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> 正在初始化搜索引擎 </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../../ title="TephrocactusMYC's CTF WP" class="md-nav__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> TephrocactusMYC's CTF WP </label> <div class=md-nav__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ class=md-nav__link> ABOUT </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> CSE365 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE365 data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> CSE365 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CSE365/ class=md-nav__link> ABOUT CSE365 </a> </li> <li class=md-nav__item> <a href=../../CSE365/talking-web/ class=md-nav__link> talking-web </a> </li> <li class=md-nav__item> <a href=../../../CSE365/cryptography.md class=md-nav__link> cryptography </a> </li> <li class=md-nav__item> <a href=../../CSE365/websecurity/ class=md-nav__link> websecurity </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> CSE466 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE466 data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> CSE466 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CSE466/ class=md-nav__link> ABOUT CSE466 </a> </li> <li class=md-nav__item> <a href=../../CSE466/program-misuse/ class=md-nav__link> program misuse </a> </li> <li class=md-nav__item> <a href=../../CSE466/program-interaction/ class=md-nav__link> program interaction </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4 checked> <label class=md-nav__link for=__nav_4> WarGame <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=WarGame data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> WarGame </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../WarGame/REAMD.md class=md-nav__link> ABOUT WarGame </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <a href=./ class="md-nav__link md-nav__link--active"> bandit </a> </li> <li class=md-nav__item> <a href=../krypton/ class=md-nav__link> krypton </a> </li> <li class=md-nav__item> <a href=../leviathan/ class=md-nav__link> leviathan </a> </li> <li class=md-nav__item> <a href=../Natas/ class=md-nav__link> natas </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> MalwareAnalysis <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=MalwareAnalysis data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> MalwareAnalysis </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/READMD/ class=md-nav__link> ABOUT MalwareAnalysis </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_2 type=checkbox id=__nav_5_2> <label class=md-nav__link for=__nav_5_2> knoweledge <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=knoweledge data-md-level=2> <label class=md-nav__title for=__nav_5_2> <span class="md-nav__icon md-icon"></span> knoweledge </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch0/ class=md-nav__link> ch0 </a> </li> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch1/ class=md-nav__link> ch1 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_3 type=checkbox id=__nav_5_3> <label class=md-nav__link for=__nav_5_3> Lab <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Lab data-md-level=2> <label class=md-nav__title for=__nav_5_3> <span class="md-nav__icon md-icon"></span> Lab </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/Lab/lab1/ class=md-nav__link> lab1 </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/edit/master/docs/WarGame/bandit.md title=编辑此页 class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <p>OverTheWire社区是一个提供wargame的网站，可以帮助安全爱好者以趣味的方式进行学习、练习安全知识。</p> <p><a href=https://overthewire.org/wargames/bandit/ >bandit，熟悉linux和bash的有趣的网站</a></p> <h1 id=level0-ssh>level0 ssh远程登录</h1> <pre><code>ssh bandit0@bandit.labs.overthewire.org -p 2220
+# 然后输入密码即可
+</code></pre> <p><img alt=level0 src=../image.png> 顺利拿到提示符</p> <h1 id=level1>level1</h1> <p>要求使用cat命令，水</p> <pre><code>bandit0@bandit:~$ ll
+total 24
+drwxr-xr-x  2 root    root    4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root    root    4096 Apr 23 18:05 ../
+-rw-r--r--  1 root    root     220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root    root    3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root    root     807 Jan  6  2022 .profile
+-rw-r-----  1 bandit1 bandit0   33 Apr 23 18:04 readme
+bandit0@bandit:~$ cat readme
+NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+bandit0@bandit:~$
+</code></pre> <h1 id=level2>level2</h1> <p>处理名字叫“-”的文件，这个由于会和参数解析混了，我的处理办法是加上“./”</p> <pre><code>bandit1@bandit:~$ ll
+total 24
+-rw-r-----  1 bandit2 bandit1   33 Apr 23 18:04 -
+drwxr-xr-x  2 root    root    4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root    root    4096 Apr 23 18:05 ../
+-rw-r--r--  1 root    root     220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root    root    3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root    root     807 Jan  6  2022 .profile
+bandit1@bandit:~$ cat ./-
+rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+bandit1@bandit:~$
+</code></pre> <h1 id=level3>level3</h1> <p>处理名字里有空格的文件，直接拿双引号包起来即可</p> <pre><code>bandit2@bandit:~$ ll
+total 24
+drwxr-xr-x  2 root    root    4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root    root    4096 Apr 23 18:05 ../
+-rw-r--r--  1 root    root     220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root    root    3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root    root     807 Jan  6  2022 .profile
+-rw-r-----  1 bandit3 bandit2   33 Apr 23 18:04 spaces in this filename
+bandit2@bandit:~$ cat &quot;spaces in this filename&quot;
+aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+bandit2@bandit:~$
+</code></pre> <h1 id=level4>level4</h1> <p>处理文件夹，正确的方式应该是cd进去再处理，因为在这个阶段还不涉及绝对路径、相对路径之类的概念，但是我懒了</p> <p>另外，还有个处理隐藏文件，可以使用ls -l命令，在大多数bash中会把ls -al写成别名ll</p> <p>也可以使用ls -a</p> <pre><code>bandit3@bandit:~$ ll
+total 24
+drwxr-xr-x  3 root root 4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root root 4096 Apr 23 18:05 ../
+-rw-r--r--  1 root root  220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root root 3771 Jan  6  2022 .bashrc
+drwxr-xr-x  2 root root 4096 Apr 23 18:04 inhere/
+-rw-r--r--  1 root root  807 Jan  6  2022 .profile
+bandit3@bandit:~$ ls inhere/
+bandit3@bandit:~$ ll inhere/
+total 12
+drwxr-xr-x 2 root    root    4096 Apr 23 18:04 ./
+drwxr-xr-x 3 root    root    4096 Apr 23 18:04 ../
+-rw-r----- 1 bandit4 bandit3   33 Apr 23 18:04 .hidden
+bandit3@bandit:~$ cat ./inhere/.hidden
+2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+bandit3@bandit:~$
+</code></pre> <h1 id=level5>level5</h1> <pre><code>bandit4@bandit:~$ ls
+inhere
+bandit4@bandit:~$ cd inhere/
+bandit4@bandit:~/inhere$ ll
+total 48
+drwxr-xr-x 2 root    root    4096 Apr 23 18:04 ./
+drwxr-xr-x 3 root    root    4096 Apr 23 18:04 ../
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file00
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file01
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file02
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file03
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file04
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file05
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file06
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file07
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file08
+-rw-r----- 1 bandit5 bandit4   33 Apr 23 18:04 -file09
+bandit4@bandit:~/inhere$ cat ./-file06
+'�wk^j��M�;,�co9bandit4@bandit:~/inhere$
+# 使用reset后
+bandit4@bandit:~/inhere$ cat ./-file07
+lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+bandit4@bandit:~/inhere$
+</code></pre> <p><a href=https://blog.csdn.net/tsummer2010/article/details/105374173>这里</a>有一个讲了reset和clear的区别，很简单</p> <h1 id=level6>level6</h1> <p>挺麻烦的一个鸡儿题</p> <pre><code>bandit5@bandit:~/inhere$ cd maybehere07
+bandit5@bandit:~/inhere/maybehere07$ ll
+total 56
+drwxr-x---  2 root bandit5 4096 Apr 23 18:04 ./
+drwxr-x--- 22 root bandit5 4096 Apr 23 18:04 ../
+-rwxr-x---  1 root bandit5 3663 Apr 23 18:04 -file1*
+-rwxr-x---  1 root bandit5 3065 Apr 23 18:04 .file1*
+-rw-r-----  1 root bandit5 2488 Apr 23 18:04 -file2
+-rw-r-----  1 root bandit5 1033 Apr 23 18:04 .file2
+-rwxr-x---  1 root bandit5 3362 Apr 23 18:04 -file3*
+-rwxr-x---  1 root bandit5 1997 Apr 23 18:04 .file3*
+-rwxr-x---  1 root bandit5 4130 Apr 23 18:04 spaces file1*
+-rw-r-----  1 root bandit5 9064 Apr 23 18:04 spaces file2
+-rwxr-x---  1 root bandit5 1022 Apr 23 18:04 spaces file3*
+bandit5@bandit:~/inhere/maybehere07$ cat .file2
+P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+</code></pre> <p>这里需要知道ll输出的这一大堆都是啥玩意儿，rwx分别代表可读可写可执行，剩下的看文档吧。</p> <h1 id=level7>level7</h1> <p>要使用find了</p> <pre><code># 我cd到根目录也没怎么发现，因此直接find搜索了，还挺快的，按理说linux自带这些破玩意儿不该这么快的。。。
+bandit6@bandit:/$ find / -type f -size 33c -user bandit7 -group bandit6 2&gt;/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:/$ cat /var/lib/dpkg/info/bandit7.password
+z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+</code></pre> <p>那个斜杠是指定为根目录，然后就是大小、用户、组，最后有一个标准错误重定向到黑洞，不写也没事儿，我习惯了</p> <h1 id=level8>level8</h1> <p>这个就是grep</p> <pre><code>bandit7@bandit:~$ find / -type f -name &quot;data.txt&quot; -exec grep -l &quot;million&quot; {} \; 2&gt;/dev/null
+/home/bandit7/data.txt
+bandit7@bandit:~$ grep &quot;millionth&quot; data.txt
+millionth   TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+</code></pre> <p>其实另一个办法是打开文件然后用vim的搜索，我试了试也挺快的</p> <h1 id=level9>level9</h1> <p>用一下sort即可</p> <pre><code>bandit8@bandit:~$ ll
+total 56
+drwxr-xr-x  2 root    root     4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root    root     4096 Apr 23 18:05 ../
+-rw-r--r--  1 root    root      220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root    root     3771 Jan  6  2022 .bashrc
+-rw-r-----  1 bandit9 bandit8 33033 Apr 23 18:04 data.txt
+-rw-r--r--  1 root    root      807 Jan  6  2022 .profile
+bandit8@bandit:~$ sort data.txt | uniq -c | sort -n | head -n1
+      1 EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+bandit8@bandit:~$
+</code></pre> <h1 id=level10>level10</h1> <p>好像是正则，我不太会，草草写了些</p> <pre><code>bandit9@bandit:~$ strings data.txt | grep -oE &quot;==.*&quot;
+========== the#
+========== password
+========== is
+========== G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+bandit9@bandit:~$
+</code></pre> <h1 id=level11>level11</h1> <p>base64解码</p> <pre><code>bandit10@bandit:~$ cat data.txt | base64 -d
+The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+bandit10@bandit:~$
+</code></pre> <h1 id=level12>level12</h1> <p>使用tr</p> <p><em>万幸查了一下，差点儿写个脚本。。。</em></p> <pre><code>bandit11@bandit:~$ cat data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+</code></pre> <h1 id=level13>level13</h1> <p>有点儿复杂啊，问的chatgpt然后才会的</p> <pre><code># 先mkdir然后cp
+bandit12@bandit:~$ cd /tmp/myname123
+bandit12@bandit:/tmp/myname123$ xxd -r /tmp/myname123/data.txt &gt; /tmp/myname123/data.bin
+bandit12@bandit:/tmp/myname123$ file /tmp/myname123/data.bin
+/tmp/myname123/data.bin: gzip compressed data, was &quot;data2.bin&quot;, last modified: Sun Apr 23 18:04:23 2023, max compression, from Unix, original size modulo 2^32 581
+bandit12@bandit:/tmp/myname123$ gzip -d -S .bin /tmp/myname123/data.bin
+bandit12@bandit:/tmp/myname123$ ll
+total 10628
+drwxrwxr-x    2 bandit12 bandit12     4096 Jul 17 03:01 ./
+drwxrwx-wt 3791 root     root     10801152 Jul 17 03:03 ../
+-rw-rw-r--    1 bandit12 bandit12        0 Jul 17 02:39 bandit
+-rw-rw-r--    1 bandit12 bandit12      581 Jul 17 02:59 data
+-rw-rw-r--    1 bandit12 bandit12    20480 Jul 16 19:05 data5.tar
+-rw-r--r--    1 bandit12 bandit12    10240 Apr 23 18:04 data6.tar
+-rw-r--r--    1 bandit12 bandit12    10240 Apr 23 18:04 data8.tar
+-rw-r--r--    1 bandit12 bandit12       49 Apr 23 18:04 data9
+-rw-rw-r--    1 bandit12 bandit12      581 Jul 16 15:25 data.bz2
+-rw-r-----    1 bandit12 bandit12     2642 Jul 16 19:00 data.hex
+-rw-r-----    1 bandit12 bandit12     2642 Jul 17 02:50 data.txt
+-rw-r-----    1 bandit12 bandit12     2642 Jul 17 02:34 mydata.txt
+bandit12@bandit:/tmp/myname123$ cat data9
+The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+bandit12@bandit:/tmp/myname123$
+</code></pre> <h1 id=level14>level14</h1> <p>水，用私钥登录</p> <pre><code>bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost -p 2220
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit13/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit13/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+!!! You are trying to log into this SSH server with a password on port 2220 from localhost.
+!!! Connecting from localhost is blocked to conserve resources.
+!!! Please log out and log in again.
+
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--&quot;
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---&quot; ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing &quot;somegame&quot;, then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command &quot;mktemp -d&quot; in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * peda (https://github.com/longld/peda.git) in /opt/peda/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+ Both python2 and python3 are installed.
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+bandit14@bandit:~$
+</code></pre> <h1 id=level15>level15</h1> <p>nc这个命令在复杂情况下需要自己写http请求的内容，挺离谱的，还是curl和python方便</p> <p>一些学习的链接<a href=https://juejin.cn/post/6995203632387866631>https://juejin.cn/post/6995203632387866631</a>、<a href=https://www.runoob.com/linux/linux-comm-nc.html>https://www.runoob.com/linux/linux-comm-nc.html</a>，更多内容可以参考CSE365 sp23的<code>talking web</code>模块。</p> <pre><code>bandit14@bandit:/etc/bandit_pass$ cat bandit14
+fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+bandit14@bandit:/etc/bandit_pass$ cat bandit14 | nc localhost 30000
+Correct!
+jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+
+bandit14@bandit:/etc/bandit_pass$
+</code></pre> <h1 id=level16>level16</h1> <pre><code>bandit14@bandit:echo &quot;jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt&quot; | openssl s_client -connect localhost:30001 -ign_eof
+Correct!
+JQttfApK4SeyHwDlI9SXGR50qclOAil1
+
+closed
+</code></pre> <h1 id=level17>level17</h1> <pre><code>bandit16@bandit:~$ nmap -sV localhost -T5 -p 31000-32000
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-07-17 04:20 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00015s latency).
+Not shown: 996 closed ports
+PORT      STATE SERVICE     VERSION
+31046/tcp open  echo
+31518/tcp open  ssl/echo
+31691/tcp open  echo
+31790/tcp open  ssl/unknown
+31960/tcp open  echo
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port31790-TCP:V=7.80%T=SSL%I=7%D=7/17%Time=64B4C185%P=x86_64-pc-linux-g
+SF:nu%r(GenericLines,31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x20cu
+SF:rrent\x20password\n&quot;)%r(GetRequest,31,&quot;Wrong!\x20Please\x20enter\x20the
+SF:\x20correct\x20current\x20password\n&quot;)%r(HTTPOptions,31,&quot;Wrong!\x20Plea
+SF:se\x20enter\x20the\x20correct\x20current\x20password\n&quot;)%r(RTSPRequest,
+SF:31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x20password\
+SF:n&quot;)%r(Help,31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x
+SF:20password\n&quot;)%r(SSLSessionReq,31,&quot;Wrong!\x20Please\x20enter\x20the\x20
+SF:correct\x20current\x20password\n&quot;)%r(TerminalServerCookie,31,&quot;Wrong!\x2
+SF:0Please\x20enter\x20the\x20correct\x20current\x20password\n&quot;)%r(TLSSess
+SF:ionReq,31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x20pa
+SF:ssword\n&quot;)%r(Kerberos,31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x
+SF:20current\x20password\n&quot;)%r(FourOhFourRequest,31,&quot;Wrong!\x20Please\x20e
+SF:nter\x20the\x20correct\x20current\x20password\n&quot;)%r(LPDString,31,&quot;Wrong
+SF:!\x20Please\x20enter\x20the\x20correct\x20current\x20password\n&quot;)%r(LDA
+SF:PSearchReq,31,&quot;Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x
+SF:20password\n&quot;)%r(SIPOptions,31,&quot;Wrong!\x20Please\x20enter\x20the\x20cor
+SF:rect\x20current\x20password\n&quot;);
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 98.85 seconds
+</code></pre> <p>然后，要输入16的密码</p> <pre><code>bandit16@bandit:~$ openssl s_client -connect localhost:31790 -ign_eof
+CONNECTED(00000003)
+Can't use SSL_get_servername
+depth=0 CN = localhost
+verify error:num=18:self-signed certificate
+verify return:1
+depth=0 CN = localhost
+verify error:num=10:certificate has expired
+notAfter=Jul 17 03:32:59 2023 GMT
+verify return:1
+depth=0 CN = localhost
+notAfter=Jul 17 03:32:59 2023 GMT
+verify return:1
+---
+Certificate chain
+ 0 s:CN = localhost
+   i:CN = localhost
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA1
+   v:NotBefore: Jul 17 03:31:59 2023 GMT; NotAfter: Jul 17 03:32:59 2023 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDCzCCAfOgAwIBAgIEasML0jANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMjMwNzE3MDMzMTU5WhcNMjMwNzE3MDMzMjU5WjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQ
+WpK5aICLya01rGDXaLVwQpZqWmn75BPH3O2vrqMAu14iXbKtemseBnOaB3vSfu04
+QNfWLYWKrnab4hd73/TOurIHq33MnsH8Yb+lzx6VfBq/FouTviT2QBE5cVlvQV63
+QPjJZ4mBomudPpDXLfbHWxsH8BYxa6lSqBjs8EqOnfEL9SRoQ+H0w66NjpOnGtLO
+l0oYAbmriOkmOht1tr1hoxiacNZa9WEOq01SNrIRGbhOPw07c7/rVXfz9dDBrhPQ
+D7FpX/UDyZvJFM3I+sTpwoUj7Ypzvhim+kVY9lGRnzuy439yGovgURCiNwlXUpDA
+/Kr/hRCriC3URJT4mWKdAgMBAAGjZTBjMBQGA1UdEQQNMAuCCWxvY2FsaG9zdDBL
+BglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0ZWQgYnkgTmNhdC4g
+U2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3DQEBBQUAA4IBAQBy
+qV/aRIcHHbKSksYqANDBrkLgfXKXKeXMZBTBq3Q4rMLF/ux7tGU+2/YPAo/6L0IZ
+2/UGcW+/msmgvBE3+j5FnIB/aoqp2M8fksOiaC8OrsJ6bbShEEV+q5VITosF/Nw0
+qrpoXa+7l5IF/8tuTCpi4ZQGHX+uoRgufcGkK3c8Gxsb9Xtroz8se7yLU0VKLm4d
+/H0Ozu4QkVTaQ+7971pXYHyip3tKuJbCeJOJledvqGvvcaIvE9S1vxEugQUq2K6u
+DZfCLU3TR9l29QonH13HtF5mEDNE4KaMtYxM4B4Mo3KMUHVf4hi4nKJVpjs/FSiI
+Vpv3P9pqfmYjEQjp7yIz
+-----END CERTIFICATE-----
+subject=CN = localhost
+issuer=CN = localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1339 bytes and written 373 bytes
+Verification error: certificate has expired
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 10 (certificate has expired)
+---
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: AD5693D41623D8997CC2EE94B1CC7C61F949EFBC34B80DC8421E8B82C6572B65
+    Session-ID-ctx:
+    Resumption PSK: AFE5847E9831517B3B0BCF4B511501803A902004393C9D3D926CA22524CCE716B6A771D7802C706EF3C94E8C264D4B95
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - a5 d8 4b ca c0 ad 23 28-64 e1 24 b6 18 97 bf 19   ..K...#(d.$.....
+    0010 - c4 53 bd cd 78 c9 dd 28-f5 14 4c 9d 30 a0 18 97   .S..x..(..L.0...
+    0020 - 5d d6 5b 92 2f 96 7a 0e-ac e2 49 bc e3 d1 a6 79   ].[./.z...I....y
+    0030 - 73 37 ea 00 c4 4f 0a 07-4c 4e b9 f8 f4 fe 04 bd   s7...O..LN......
+    0040 - cb a9 f5 31 28 a1 b9 07-fd cb 83 8b 8d 93 b8 7f   ...1(...........
+    0050 - 51 10 1a b9 7c 4e 10 ab-4b 93 8c c7 88 9f 6e 85   Q...|N..K.....n.
+    0060 - 87 e8 fc bc 3d f7 93 f0-2f 55 1d cf 64 80 7c 08   ....=.../U..d.|.
+    0070 - f2 1c 95 b9 d1 3f 15 90-57 e1 b1 9e 93 87 1d 72   .....?..W......r
+    0080 - 93 ed 83 b8 4b ef d2 bd-1d f5 ca 1b f9 d6 7a ff   ....K.........z.
+    0090 - 13 fd 8f 40 43 fe 97 99-2a fa eb f9 52 ad b0 27   ...@C...*...R..'
+    00a0 - be 2a a0 5c a7 fd 76 6a-22 58 a4 56 02 e7 f2 13   .*.\..vj&quot;X.V....
+    00b0 - 4b 01 58 44 ab 63 3d 3d-fa 7e f7 ac 66 8c ef da   K.XD.c==.~..f...
+    00c0 - 79 db d0 58 9f c1 fe 8c-3f 95 19 ed a6 f6 08 e8   y..X....?.......
+
+    Start Time: 1689568148
+    Timeout   : 7200 (sec)
+    Verify return code: 10 (certificate has expired)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: 731D8DE5B4509BB39289FED6CED817A731462808EFAF8C604A5BEE6E85CD12AB
+    Session-ID-ctx:
+    Resumption PSK: F18769CA70C1B23B9CAFAD3D8682E406B83AF8FC439A378D79ABBB19CD4B59EE837D9121AB1BA7FCCF1F761FA4AFB8F7
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - a5 d8 4b ca c0 ad 23 28-64 e1 24 b6 18 97 bf 19   ..K...#(d.$.....
+    0010 - 23 10 a4 f3 c5 e4 25 65-c5 73 a7 ce d3 1b 98 bf   #.....%e.s......
+    0020 - 1a 41 ff b2 2e 44 0f c6-a2 7c a6 12 0c 22 7a a9   .A...D...|...&quot;z.
+    0030 - 28 d6 09 17 d2 7a 97 5b-a3 37 fc 5c de 86 24 47   (....z.[.7.\..$G
+    0040 - 78 20 db 23 15 d1 3d 77-19 b2 91 dc c7 43 d6 66   x .#..=w.....C.f
+    0050 - 3c 04 a7 dd b9 32 e6 0f-16 a1 ab dd 92 99 18 e7   &lt;....2..........
+    0060 - 23 ad ab 79 3e af 2d ca-ea 4e 29 67 27 39 d2 d4   #..y&gt;.-..N)g'9..
+    0070 - e9 6f e0 5b be 0d d4 2d-07 e2 83 10 4a aa 94 20   .o.[...-....J..
+    0080 - 1e 06 3d 42 df 74 91 99-43 cc bc ca 5c 59 74 f1   ..=B.t..C...\Yt.
+    0090 - df 00 c4 16 44 2d a1 0f-db db 65 84 3b 89 58 b4   ....D-....e.;.X.
+    00a0 - 81 71 91 ec 5c 5e a3 db-51 25 b4 37 e5 0d 6b 41   .q..\^..Q%.7..kA
+    00b0 - 88 a8 dc 9d b3 02 5b 68-04 4c 01 cd cd a3 17 24   ......[h.L.....$
+    00c0 - 4a fe f5 03 49 ab 60 1e-b3 eb 07 04 92 c5 ff ab   J...I.`.........
+
+    Start Time: 1689568148
+    Timeout   : 7200 (sec)
+    Verify return code: 10 (certificate has expired)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+
+Wrong! Please enter the correct current password
+closed
+</code></pre> <p>是从这里看出来要输入密码的！</p> <pre><code>bandit16@bandit:~$ openssl s_client -connect localhost:31790 -ign_eof
+CONNECTED(00000003)
+Can't use SSL_get_servername
+depth=0 CN = localhost
+verify error:num=18:self-signed certificate
+verify return:1
+depth=0 CN = localhost
+verify error:num=10:certificate has expired
+notAfter=Jul 17 03:32:59 2023 GMT
+verify return:1
+depth=0 CN = localhost
+notAfter=Jul 17 03:32:59 2023 GMT
+verify return:1
+---
+Certificate chain
+ 0 s:CN = localhost
+   i:CN = localhost
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA1
+   v:NotBefore: Jul 17 03:31:59 2023 GMT; NotAfter: Jul 17 03:32:59 2023 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDCzCCAfOgAwIBAgIEasML0jANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMjMwNzE3MDMzMTU5WhcNMjMwNzE3MDMzMjU5WjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQ
+WpK5aICLya01rGDXaLVwQpZqWmn75BPH3O2vrqMAu14iXbKtemseBnOaB3vSfu04
+QNfWLYWKrnab4hd73/TOurIHq33MnsH8Yb+lzx6VfBq/FouTviT2QBE5cVlvQV63
+QPjJZ4mBomudPpDXLfbHWxsH8BYxa6lSqBjs8EqOnfEL9SRoQ+H0w66NjpOnGtLO
+l0oYAbmriOkmOht1tr1hoxiacNZa9WEOq01SNrIRGbhOPw07c7/rVXfz9dDBrhPQ
+D7FpX/UDyZvJFM3I+sTpwoUj7Ypzvhim+kVY9lGRnzuy439yGovgURCiNwlXUpDA
+/Kr/hRCriC3URJT4mWKdAgMBAAGjZTBjMBQGA1UdEQQNMAuCCWxvY2FsaG9zdDBL
+BglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0ZWQgYnkgTmNhdC4g
+U2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3DQEBBQUAA4IBAQBy
+qV/aRIcHHbKSksYqANDBrkLgfXKXKeXMZBTBq3Q4rMLF/ux7tGU+2/YPAo/6L0IZ
+2/UGcW+/msmgvBE3+j5FnIB/aoqp2M8fksOiaC8OrsJ6bbShEEV+q5VITosF/Nw0
+qrpoXa+7l5IF/8tuTCpi4ZQGHX+uoRgufcGkK3c8Gxsb9Xtroz8se7yLU0VKLm4d
+/H0Ozu4QkVTaQ+7971pXYHyip3tKuJbCeJOJledvqGvvcaIvE9S1vxEugQUq2K6u
+DZfCLU3TR9l29QonH13HtF5mEDNE4KaMtYxM4B4Mo3KMUHVf4hi4nKJVpjs/FSiI
+Vpv3P9pqfmYjEQjp7yIz
+-----END CERTIFICATE-----
+subject=CN = localhost
+issuer=CN = localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1339 bytes and written 373 bytes
+Verification error: certificate has expired
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 10 (certificate has expired)
+---
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: 1B8DD2D7E7B861C8494FB2E901FEB50552571BFE7200C45C57EEACE66795AEEA
+    Session-ID-ctx:
+    Resumption PSK: 25F7290250EB5F41F5C184E597BD8493DFD4EC4E8965B10CE6A409D2909B370F30DB9A1E965F680CCD6F9C9E3BC4D0C6
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - a5 d8 4b ca c0 ad 23 28-64 e1 24 b6 18 97 bf 19   ..K...#(d.$.....
+    0010 - a1 6b 8c 90 89 4b 8b e8-df 1e 82 05 28 ad a8 5f   .k...K......(.._
+    0020 - 65 f3 03 76 14 8f d5 97-8a a5 28 ea 20 2f 06 55   e..v......(. /.U
+    0030 - 16 ba 4b 88 de ab 7e 00-1c 76 ba 08 b1 e7 0f a9   ..K...~..v......
+    0040 - 1d 53 2a 31 16 6b 02 0d-2e dd e7 9a f4 9a e8 13   .S*1.k..........
+    0050 - 13 a1 20 67 4c 24 07 53-18 c1 68 56 30 f4 92 c3   .. gL$.S..hV0...
+    0060 - b5 5b a6 4d 99 ff 16 fd-30 72 9b 0e f7 f2 c6 ab   .[.M....0r......
+    0070 - 69 c1 c0 b9 16 18 3d 5c-c4 db 4f b9 06 bf 6c 6f   i.....=\..O...lo
+    0080 - 51 c4 99 60 fa 03 55 af-ad 46 ed e1 53 0f 92 65   Q..`..U..F..S..e
+    0090 - 57 82 b9 5b ce 5b 40 37-4f d5 a8 a3 27 63 b9 2d   W..[.[@7O...'c.-
+    00a0 - 6b e4 ea 11 f2 9f c3 f7-82 3d 16 4e 2b 40 d3 25   k........=.N+@.%
+    00b0 - 50 10 0f aa 74 30 49 da-c8 01 32 23 c0 b7 3c 8b   P...t0I...2#..&lt;.
+    00c0 - 97 8d 24 10 2d 93 73 04-33 01 d9 70 92 26 4e fc   ..$.-.s.3..p.&amp;N.
+
+    Start Time: 1689568162
+    Timeout   : 7200 (sec)
+    Verify return code: 10 (certificate has expired)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_256_GCM_SHA384
+    Session-ID: A0EF32E17C1AC0960FD46EE50181836B83644B2168CDC3087A3612EC77D9A111
+    Session-ID-ctx:
+    Resumption PSK: 117786B647299C2A691BD342EDC8E39A7899490BE868D804415203AED03876A67C51CE8E55D236DAC96130391C36759A
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - a5 d8 4b ca c0 ad 23 28-64 e1 24 b6 18 97 bf 19   ..K...#(d.$.....
+    0010 - f3 b6 fd 9d 6e e3 35 98-ad 1d df 9e 75 38 c5 47   ....n.5.....u8.G
+    0020 - 15 7a c4 8f 31 3b 39 1e-ef 1c f2 56 f2 61 48 a9   .z..1;9....V.aH.
+    0030 - 36 ae 3d 66 e9 0d 0f ff-07 39 33 77 d7 87 8c 63   6.=f.....93w...c
+    0040 - fb 00 ab 1e 27 3a 91 ed-24 49 b6 e2 9d 49 a6 2b   ....':..$I...I.+
+    0050 - 90 ce a6 8b ea 1c bd f5-38 77 83 fc 9b 4c b4 49   ........8w...L.I
+    0060 - 3b d9 7c bb 52 0b 2d 38-88 a5 80 b0 8e 80 5d 66   ;.|.R.-8......]f
+    0070 - 1e 0b 9d 10 b2 81 11 51-0a 30 60 ec b9 2d d2 5e   .......Q.0`..-.^
+    0080 - 64 66 87 44 84 78 f8 e5-2b 62 cb 5f 84 aa 50 01   df.D.x..+b._..P.
+    0090 - 5d d6 62 fd e8 8b f8 fc-91 0c 8a f9 a7 12 6e ae   ].b...........n.
+    00a0 - b9 40 f2 4f 90 01 0e 30-cf bf 16 3a b5 96 fc 3a   .@.O...0...:...:
+    00b0 - 9b a5 e0 4a 54 df eb 39-68 be 05 77 6b 50 d7 a3   ...JT..9h..wkP..
+    00c0 - 87 0e 7d bf 33 1a 9e 31-40 b6 3e 5e 1f a9 cf d6   ..}.3..1@.&gt;^....
+
+    Start Time: 1689568162
+    Timeout   : 7200 (sec)
+    Verify return code: 10 (certificate has expired)
+    Extended master secret: no
+    Max Early Data: 0
+---
+read R BLOCK
+JQttfApK4SeyHwDlI9SXGR50qclOAil1
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+</code></pre> <p>返回了正确的密钥，然后写入/tmp下的某个文件，然后给它只有自己可读可写即可</p> <pre><code># 首先需要在tmp下新建一个文件夹，然后把密钥写进去，然后chmod 666那个文件
+bandit16@bandit:/tmp/a$ ssh -i 1.private bandit17@localhost -p 2220
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+bandit17@bandit:~$
+</code></pre> <h1 id=level18>level18</h1> <p>直接diff</p> <pre><code>bandit17@bandit:~$ diff passwords.old passwords.new
+42c42
+&lt; glZreTEH1V3cGKL6g4conYqZqaEj0mte
+---
+&gt; hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+bandit17@bandit:~$
+</code></pre> <p>然后登录，然后就是：</p> <pre><code>┌─[myc@ubuntu22]─[~]
+└──╼[13:02:46]$ ssh bandit18@bandit.labs.overthewire.org -p 2220
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password:
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--&quot;
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---&quot; ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing &quot;somegame&quot;, then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command &quot;mktemp -d&quot; in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * peda (https://github.com/longld/peda.git) in /opt/peda/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+ Both python2 and python3 are installed.
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+Byebye !
+Connection to bandit.labs.overthewire.org closed.
+</code></pre> <h1 id=level19>level19</h1> <p>这个，告诉了你文件名和位置，可以直接读，而不是链接一个bash</p> <p>因此可以玩儿一个骚操作</p> <pre><code>┌─[Fail][myc@ubuntu22]─[~]
+└──╼[13:09:29]$ ssh bandit18@bandit.labs.overthewire.org -p 2220 -t cat readme
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password:
+awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+Connection to bandit.labs.overthewire.org closed.
+</code></pre> <h1 id=level20>level20</h1> <p>就是运行这个小文件</p> <pre><code>bandit19@bandit:~$ ./bandit20-do --help
+Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
+Set each NAME to VALUE in the environment and run COMMAND.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -i, --ignore-environment  start with an empty environment
+  -0, --null           end each output line with NUL, not newline
+  -u, --unset=NAME     remove variable from the environment
+  -C, --chdir=DIR      change working directory to DIR
+  -S, --split-string=S  process and split S into separate arguments;
+                        used to pass multiple arguments on shebang lines
+      --block-signal[=SIG]    block delivery of SIG signal(s) to COMMAND
+      --default-signal[=SIG]  reset handling of SIG signal(s) to the default
+      --ignore-signal[=SIG]   set handling of SIG signals(s) to do nothing
+      --list-signal-handling  list non default signal handling to stderr
+  -v, --debug          print verbose information for each processing step
+      --help     display this help and exit
+      --version  output version information and exit
+
+A mere - implies -i.  If no COMMAND, print the resulting environment.
+
+SIG may be a signal name like 'PIPE', or a signal number like '13'.
+Without SIG, all known signals are included.  Multiple signals can be
+comma-separated.
+
+GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;
+Full documentation &lt;https://www.gnu.org/software/coreutils/env&gt;
+or available locally via: info '(coreutils) env invocation'
+bandit19@bandit:~$ ./bandit20-do NAME=11020 cat /etc/bandit_pass/bandit20
+VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+bandit19@bandit:~$
+</code></pre> <h1 id=level21>level21</h1> <p>直接看图 <img alt=level20-21 src=../image-1.png></p> <pre><code>NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+</code></pre> <h1 id=level22>level22</h1> <p>就是看守护进程在运行哪个脚本，然后跟着去找。</p> <pre><code>bandit21@bandit:~$ man cron
+bandit21@bandit:~$ man crontab
+bandit21@bandit:~$ man 5 crontab
+bandit21@bandit:~$ cd /etc/cron.d/
+bandit21@bandit:/etc/cron.d$ ll
+total 56
+drwxr-xr-x   2 root root  4096 Apr 23 18:05 ./
+drwxr-xr-x 108 root root 12288 Jun 10 22:51 ../
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit15_root
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit17_root
+-rw-r--r--   1 root root   120 Apr 23 18:04 cronjob_bandit22
+-rw-r--r--   1 root root   122 Apr 23 18:04 cronjob_bandit23
+-rw-r--r--   1 root root   120 Apr 23 18:04 cronjob_bandit24
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit25_root
+-rw-r--r--   1 root root   201 Jan  8  2022 e2scrub_all
+-rwx------   1 root root    52 Apr 23 18:05 otw-tmp-dir*
+-rw-r--r--   1 root root   102 Mar 23  2022 .placeholder
+-rw-r--r--   1 root root   396 Feb  2  2021 sysstat
+bandit21@bandit:/etc/cron.d$ cat cronjob_bandit15_root
+* * * * * root /usr/bin/cronjob_bandit15_root.sh &amp;&gt; /dev/null
+bandit21@bandit:/etc/cron.d$ cat cronjob_bandit17_root
+* * * * * root /usr/bin/cronjob_bandit17_root.sh &amp;&gt; /dev/null
+bandit21@bandit:/etc/cron.d$ cat cronjob_bandit22
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+bandit21@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:/etc/cron.d$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+bandit21@bandit:/etc/cron.d$
+</code></pre> <h1 id=level23>level23</h1> <p>和上面那个题几乎一样</p> <pre><code>bandit22@bandit:~$ cd /etc/cron.d/
+bandit22@bandit:/etc/cron.d$ ll
+total 56
+drwxr-xr-x   2 root root  4096 Apr 23 18:05 ./
+drwxr-xr-x 108 root root 12288 Jun 10 22:51 ../
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit15_root
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit17_root
+-rw-r--r--   1 root root   120 Apr 23 18:04 cronjob_bandit22
+-rw-r--r--   1 root root   122 Apr 23 18:04 cronjob_bandit23
+-rw-r--r--   1 root root   120 Apr 23 18:04 cronjob_bandit24
+-rw-r--r--   1 root root    62 Apr 23 18:04 cronjob_bandit25_root
+-rw-r--r--   1 root root   201 Jan  8  2022 e2scrub_all
+-rwx------   1 root root    52 Apr 23 18:05 otw-tmp-dir*
+-rw-r--r--   1 root root   102 Mar 23  2022 .placeholder
+-rw-r--r--   1 root root   396 Feb  2  2021 sysstat
+bandit22@bandit:/etc/cron.d$ cat cronjob_bandit23
+@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null
+bandit22@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit23.sh
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo &quot;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&quot;
+
+cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget
+bandit22@bandit:/etc/cron.d$
+</code></pre> <p>拿到脚本以后直接执行一下，不过需要注意用户是bandit23，因为whoami输出的是bandit22</p> <pre><code>bandit22@bandit:/etc/cron.d$ echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+8ca319486bfbbc3663ea0fbe81326349
+bandit22@bandit:/etc/cron.d$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+</code></pre> <h1 id=level24>level24</h1> <p>还是那几步，然后看到了这玩意儿</p> <pre><code>bandit23@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname/foo || exit 1
+echo &quot;Executing and deleting all scripts in /var/spool/$myname/foo:&quot;
+for i in * .*;
+do
+    if [ &quot;$i&quot; != &quot;.&quot; -a &quot;$i&quot; != &quot;..&quot; ];
+    then
+        echo &quot;Handling $i&quot;
+        owner=&quot;$(stat --format &quot;%U&quot; ./$i)&quot;
+        if [ &quot;${owner}&quot; = &quot;bandit23&quot; ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -rf ./$i
+    fi
+done
+</code></pre> <pre><code>bandit23@bandit:/var/spool/bandit24$ ll
+total 12
+dr-xr-x---  3 bandit24 bandit23 4096 Apr 23 18:04 ./
+drwxr-xr-x  5 root     root     4096 Apr 23 18:04 ../
+drwxrwx-wx 13 root     bandit24 4096 Jul 17 06:58 foo/
+bandit23@bandit:/var/spool/bandit24$
+# 这里我根本没有写的权限，题改了？？？？？？？
+</code></pre> <p>那也简单，就是把脚本放在foo底下</p> <p>脚本就是一个输出，水的一批</p> <pre><code>#!/bin/bash
+cat /etc/bandit_pass/bandit24 &gt;&gt; /tmp/bandit23/pass
+</code></pre> <p>然后执行脚本就行，最后得到如下结果：</p> <pre><code>VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+</code></pre> <h1 id=level25>level25</h1> <p>要写爆破脚本</p> <pre><code>bandit24@bandit:~$ nc localhost 30002
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+
+Fail! You did not supply enough data. Try again.
+^C
+bandit24@bandit:~$
+</code></pre> <p>脚本如下：</p> <pre><code>#! /bin/bash
+pass24=&quot;VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar&quot;
+for i in {0..9}{0..9}{0..9}{0..9}
+do
+    echo $pass24' '$i &gt;&gt; mydict
+done
+echo &quot;done loop!&quot;
+cat ./mydict | nc localhost 30002 &gt;&gt; re
+sort re | uniq -u
+</code></pre> <p><em>上边儿有个题貌似应该用-u的，G</em></p> <p>最后得到如下结果：</p> <pre><code>The password of user bandit25 is p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+</code></pre> <h1 id=level26>level26</h1> <p>登陆上以后出现如下内容：</p> <pre><code>bandit25@bandit:~$ ll
+total 32
+drwxr-xr-x  2 root     root     4096 Apr 23 18:04 ./
+drwxr-xr-x 70 root     root     4096 Apr 23 18:05 ../
+-rw-r-----  1 bandit25 bandit25   33 Apr 23 18:04 .bandit24.password
+-r--------  1 bandit25 bandit25 1679 Apr 23 18:04 bandit26.sshkey
+-rw-r--r--  1 root     root      220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root     root     3771 Jan  6  2022 .bashrc
+-rw-r-----  1 bandit25 bandit25    4 Apr 23 18:04 .pin
+-rw-r--r--  1 root     root      807 Jan  6  2022 .profile
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost -p 2220
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit25/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit25/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+!!! You are trying to log into this SSH server with a password on port 2220 from localhost.
+!!! Connecting from localhost is blocked to conserve resources.
+!!! Please log out and log in again.
+
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--&quot;
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---&quot; ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing &quot;somegame&quot;, then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command &quot;mktemp -d&quot; in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * peda (https://github.com/longld/peda.git) in /opt/peda/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+ Both python2 and python3 are installed.
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+  _                     _ _ _   ___   __
+ | |                   | (_) | |__ \ / /
+ | |__   __ _ _ __   __| |_| |_   ) / /_
+ | '_ \ / _` | '_ \ / _` | | __| / / '_ \
+ | |_) | (_| | | | | (_| | | |_ / /| (_) |
+ |_.__/ \__,_|_| |_|\__,_|_|\__|____\___/
+Connection to localhost closed.
+bandit25@bandit:~$
+</code></pre> <p>这一步需要知道etc/passwd的内容，这里有个<a href=https://blog.csdn.net/dearsq/article/details/52586320>中文博客</a></p> <pre><code>bandit25@bandit:~$ cat /etc/passwd | grep &quot;bandit26&quot;
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit25@bandit:~$ cat /usr/bin/showtext
+#!/bin/sh
+
+export TERM=linux
+
+exec more ~/text.txt
+exit 0
+bandit25@bandit:~$
+</code></pre> <p>发现使用more展示，这里就可以把窗口缩小，让他一下子展示不完需要翻页即可，然后进入vim模式就可以进行搜索啊、编辑啊之类的事了，就解决了。</p> <pre><code>:r /etc/bandit_pass/bandit26
+c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
+</code></pre> <h1 id=level27>level27</h1> <p>这一题和level26一样，还得缩小terminal，这个不会，看的网上的题解。</p> <pre><code>:set shell sh=/bin/sh
+:sh
+$ ll
+/bin/sh: 1: ll: not found
+$ ls -al
+total 44
+drwxr-xr-x  3 root     root      4096 Apr 23 18:04 .
+drwxr-xr-x 70 root     root      4096 Apr 23 18:05 ..
+-rw-r--r--  1 root     root       220 Jan  6  2022 .bash_logout
+-rw-r--r--  1 root     root      3771 Jan  6  2022 .bashrc
+-rw-r--r--  1 root     root       807 Jan  6  2022 .profile
+drwxr-xr-x  2 root     root      4096 Apr 23 18:04 .ssh
+-rwsr-x---  1 bandit27 bandit26 14876 Apr 23 18:04 bandit27-do
+-rw-r-----  1 bandit26 bandit26   258 Apr 23 18:04 text.txt
+$ file bandit27-do
+bandit27-do: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=c148b21f7eb7e816998f07490c8007567e51953f, for GNU/Linux 3.2.0, not stripped
+$ ./bandit27-do
+Run a command as another user.
+  Example: ./bandit27-do id
+$ ./bandit27-do cat /etc/bandit_pass/bandit27
+YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+</code></pre> <h1 id=level28>level28</h1> <p>使用git仓库</p> <pre><code>bandit27@bandit:/tmp/a$ git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+Cloning into 'repo'...
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit27/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit27-git@localhost's password:
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+bandit27@bandit:/tmp/a$ ll
+total 10564
+drwxrwxr-x   3 bandit27 bandit27     4096 Jul 19 02:08 ./
+drwxrwx-wt 317 root     root     10801152 Jul 19 02:08 ../
+drwxrwxr-x   3 bandit27 bandit27     4096 Jul 19 02:08 repo/
+bandit27@bandit:/tmp/a$ cd repo/
+bandit27@bandit:/tmp/a/repo$ ll
+total 16
+drwxrwxr-x 3 bandit27 bandit27 4096 Jul 19 02:08 ./
+drwxrwxr-x 3 bandit27 bandit27 4096 Jul 19 02:08 ../
+drwxrwxr-x 8 bandit27 bandit27 4096 Jul 19 02:08 .git/
+-rw-rw-r-- 1 bandit27 bandit27   68 Jul 19 02:08 README
+bandit27@bandit:/tmp/a/repo$ cat README
+The password to the next level is: AVanL161y9rsbcJIsFHuw35rjaOM19nR
+bandit27@bandit:/tmp/a/repo$
+</code></pre> <h1 id=level29>level29</h1> <p>还是老规矩</p> <pre><code>bandit28@bandit:/tmp/b$ git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+Cloning into 'repo'...
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit28/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit28/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit28-git@localhost's password:
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 9 (delta 2), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (9/9), done.
+Resolving deltas: 100% (2/2), done.
+bandit28@bandit:/tmp/b$ cd repo/
+bandit28@bandit:/tmp/b/repo$ ll
+total 16
+drwxrwxr-x 3 bandit28 bandit28 4096 Jul 19 02:11 ./
+drwxrwxr-x 3 bandit28 bandit28 4096 Jul 19 02:11 ../
+drwxrwxr-x 8 bandit28 bandit28 4096 Jul 19 02:11 .git/
+-rw-rw-r-- 1 bandit28 bandit28  111 Jul 19 02:11 README.md
+bandit28@bandit:/tmp/b/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/b/repo$ git log
+commit 899ba88df296331cc01f30d022c006775d467f28 (HEAD -&gt; master, origin/master, origin/HEAD)
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    fix info leak
+
+commit abcff758fa6343a0d002a1c0add1ad8c71b88534
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    add missing data
+
+commit c0a8c3cf093fba65f4ee0e1fe2a530b799508c78
+Author: Ben Dover &lt;noone@overthewire.org&gt;
+Date:   Sun Apr 23 18:04:39 2023 +0000
+
+    initial commit of README.md
+</code></pre> <p><strong>这是典型的git泄露</strong></p> <pre><code>bandit28@bandit:/tmp/b/repo$ git diff 899b abcf
+diff --git a/README.md b/README.md
+index 5c6457b..b302105 100644
+--- a/README.md
++++ b/README.md
+@@ -4,5 +4,5 @@ Some notes for level29 of bandit.
+ ## credentials
+
+ - username: bandit29
+-- password: xxxxxxxxxx
++- password: tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+
+bandit28@bandit:/tmp/b/repo$
+</code></pre> <h1 id=level30>level30</h1> <p>下载下来以后，一开始以为是stash，然后发现不是，那么查看别的分支。</p> <pre><code>bandit29@bandit:/tmp/c/repo$ git stash list
+bandit29@bandit:/tmp/c/repo$ git branch  -a
+* master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/dev
+  remotes/origin/master
+  remotes/origin/sploits-dev
+bandit29@bandit:/tmp/c/repo$
+</code></pre> <p>然后切换分支即可</p> <pre><code>bandit29@bandit:/tmp/c/repo$ git checkout dev
+Branch 'dev' set up to track remote branch 'dev' from 'origin'.
+Switched to a new branch 'dev'
+bandit29@bandit:/tmp/c/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+
+bandit29@bandit:/tmp/c/repo$
+</code></pre> <h1 id=level31>level31</h1> <p>这个不会，看了一下网上的答案，这玩意儿叫引用，这里是<a href=https://git-scm.com/docs/git-show-ref>Git Pro教程</a></p> <pre><code>bandit30@bandit:/tmp/d/repo$ git show-ref
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/heads/master
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/remotes/origin/HEAD
+59530d30d299ff2e3e9719c096ebf46a65cc1424 refs/remotes/origin/master
+831aac2e2341f009e40e46392a4f5dd318483019 refs/tags/secret
+bandit30@bandit:/tmp/d/repo$ git show 831a
+OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
+bandit30@bandit:/tmp/d/repo$
+</code></pre> <h1 id=level32>level32</h1> <p>push文件</p> <pre><code>bandit31@bandit:/tmp/d/repo$ git add -f ./key.txt
+bandit31@bandit:/tmp/d/repo$ git commit -m &quot;add key.txt&quot;
+[master 462b8a5] add key.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 key.txt
+bandit31@bandit:/tmp/d/repo$ git push
+The authenticity of host '[localhost]:2220 ([127.0.0.1]:2220)' can't be established.
+ED25519 key fingerprint is SHA256:C2ihUBV7ihnV1wUXRb4RrEcLfXC5CXlhmAAM/urerLY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Could not create directory '/home/bandit31/.ssh' (Permission denied).
+Failed to add the host to the list of known hosts (/home/bandit31/.ssh/known_hosts).
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhost's password:
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 324 bytes | 324.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: ### Attempting to validate files... ####
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Well done! Here is the password for the next level:
+remote: rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost:2220/home/bandit31-git/repo
+ ! [remote rejected] master -&gt; master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
+bandit31@bandit:/tmp/d/repo$
+</code></pre> <h1 id=level33>level33</h1> <p>这个不会，看的<a href=https://mayadevbe.me/posts/overthewire/bandit/level33/ >答案</a></p> <pre><code>&gt;&gt; $0
+$ cat /etc/bandit_pass/bandit33
+odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
+</code></pre> <h1 id=_1>彩蛋了</h1> <pre><code>bandit33@bandit:~$ cat README.txt
+Congratulations on solving the last level of this game!
+
+At this moment, there are no more levels to play in this game. However, we are constantly working
+on new levels and will most likely expand this game with more levels soon.
+Keep an eye out for an announcement on our usual communication channels!
+In the meantime, you could play some of our other wargames.
+
+If you have an idea for an awesome new level, please let us know!
+bandit33@bandit:~$
+</code></pre> <p><strong>完结撒花</strong></p> <hr> <div class=md-source-date> <small> 最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2023</span> </small> </div> <script src=https://giscus.app/client.js data-repo=PKUFlyingPig/cs-self-learning data-repo-id=R_kgDOGP67ng data-category=Announcements data-category-id=DIC_kwDOGP67ns4COM9Q data-mapping=title data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_protanopia data-lang=zh-CN data-loading=lazy crossorigin=anonymous async>
+</script> <script>
+    var palette = __get("__palette")
+    if (palette && typeof palette.color === "object") {
+        if (palette.color.scheme === "slate") {
+            const giscus = document.querySelector("script[src*=giscus]")
+            giscus.setAttribute("data-theme", "dark_protanopia")
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function () {
+            var palette = __get("__palette")
+            if (palette && typeof palette.color === "object") {
+                const theme = palette.color.scheme === "slate" ? "dark_protanopia" : "light_protanopia"
+                const frame = document.querySelector(".giscus-frame")
+                frame.contentWindow.postMessage({
+                    giscus: { setConfig: { theme } }
+                }, "https://giscus.app")
+            }
+        })
+    })
+</script> </article> </div> </div> <a href=# class="md-top md-icon" data-md-component=top data-md-state=hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg> Back to top </a> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../../CSE466/program-interaction/ class="md-footer__link md-footer__link--prev" aria-label="上一页: program interaction" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 上一页 </span> program interaction </div> </div> </a> <a href=../krypton/ class="md-footer__link md-footer__link--next" aria-label="下一页: krypton" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 下一页 </span> krypton </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2023-present <a href=https://github.com/TephrocactusMYC target=_blank rel="noopener noreferrer">TephrocactusMYC</a> </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-footer-social> <a href=https://tephrocactusmyc.github.io/CTF-CLASS/ target=_blank rel=noopener title=tephrocactusmyc.github.io class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.b1047164.min.js></script> </body> </html>

