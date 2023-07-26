@@ -91,7 +91,7 @@ extra:
     property: G-KJB4RXSKZG
 
 nav:
-  - ABOUT: "index.md"
+  - ABOUT: "README.md"
   - CSE365:
       - ABOUT CSE365: "CSE365/README.md"
       - talking-web: "CSE365/talking-web.md"
@@ -108,7 +108,7 @@ nav:
       - leviathan: "WarGame/leviathan.md"
       - natas: "WarGame/Natas.md"
   -MalwareAnalysis:
-      - ABOUT MalwareAnalysis: "MalwareAnalysis/REAMD.md"
+      - ABOUT MalwareAnalysis: "MalwareAnalysis/READMD.md"
       - knoweledge:
         - ch0: "MalwareAnalysis/knowledge/ch0.md"
         - ch1: "MalwareAnalysis/knowledge/ch1.md"
