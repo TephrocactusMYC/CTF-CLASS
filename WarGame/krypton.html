@@ -1,0 +1,443 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>krypton - CTF-CLASS</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="TephrocactusMYC&#x27;s CTF WriteUps.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">ABOUT CTF CLASS</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../CSE365/index.html"><strong aria-hidden="true">1.</strong> CSE365</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../CSE365/talking-web.html"><strong aria-hidden="true">1.1.</strong> talking web</a></li><li class="chapter-item expanded "><a href="../CSE365/Intercepting-Communication.html"><strong aria-hidden="true">1.2.</strong> intercepting communication</a></li><li class="chapter-item expanded "><a href="../CSE365/websecurity.html"><strong aria-hidden="true">1.3.</strong> websecurity</a></li><li class="chapter-item expanded "><a href="../CSE365/cryptography.html"><strong aria-hidden="true">1.4.</strong> cryptography</a></li></ol></li><li class="chapter-item expanded "><a href="../CSE466/index.html"><strong aria-hidden="true">2.</strong> CSE466</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../CSE466/program-misuse.html"><strong aria-hidden="true">2.1.</strong> program-misuse</a></li><li class="chapter-item expanded "><a href="../CSE466/program-interaction.html"><strong aria-hidden="true">2.2.</strong> program-interaction</a></li></ol></li><li class="chapter-item expanded "><a href="../MalwareAnalysis/READMD.html"><strong aria-hidden="true">3.</strong> more-information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../MalwareAnalysis/knowledge/index.html"><strong aria-hidden="true">3.1.</strong> knowledge</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../MalwareAnalysis/knowledge/ch0.html"><strong aria-hidden="true">3.1.1.</strong> ch0</a></li><li class="chapter-item expanded "><a href="../MalwareAnalysis/knowledge/ch1.html"><strong aria-hidden="true">3.1.2.</strong> ch1</a></li></ol></li><li class="chapter-item expanded "><a href="../MalwareAnalysis/Lab/index.html"><strong aria-hidden="true">3.2.</strong> Lab</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../MalwareAnalysis/Lab/lab1.html"><strong aria-hidden="true">3.2.1.</strong> lab1</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../WarGame/index.html"><strong aria-hidden="true">4.</strong> WarGame</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../WarGame/bandit.html"><strong aria-hidden="true">4.1.</strong> bandit</a></li><li class="chapter-item expanded "><a href="../WarGame/krypton.html" class="active"><strong aria-hidden="true">4.2.</strong> krypton</a></li><li class="chapter-item expanded "><a href="../WarGame/leviathan.html"><strong aria-hidden="true">4.3.</strong> leviathan</a></li><li class="chapter-item expanded "><a href="../WarGame/Natas.html"><strong aria-hidden="true">4.4.</strong> natas</a></li></ol></li><li class="chapter-item expanded "><a href="../Useful-tools/index.html"><strong aria-hidden="true">5.</strong> useful tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Useful-tools/tmux.html"><strong aria-hidden="true">5.1.</strong> tmux</a></li><li class="chapter-item expanded "><a href="../Useful-tools/vim.html"><strong aria-hidden="true">5.2.</strong> vim</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CTF-CLASS</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/TephrocactusMYC/CTF-CLASS" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="level0"><a class="header" href="#level0">level0</a></h1>
+<p>base64解码</p>
+<pre><code>S1JZUFRPTklTR1JFQVQ=
+ |
+ |
+\|/
+KRYPTONISGREAT
+</code></pre>
+<h1 id="level1"><a class="header" href="#level1">level1</a></h1>
+<p>差点儿没找着文件，真抽象。</p>
+<pre><code>krypton1@bandit:/krypton/krypton1$ ll
+total 16
+drwxr-xr-x 2 root     root     4096 Apr 23 18:05 ./
+drwxr-xr-x 8 root     root     4096 Apr 23 18:05 ../
+-rw-r----- 1 krypton1 krypton1   26 Apr 23 18:05 krypton2
+-rw-r----- 1 krypton1 krypton1  882 Apr 23 18:05 README
+krypton1@bandit:/krypton/krypton1$ cat README
+Welcome to Krypton!
+
+This game is intended to give hands on experience with cryptography
+and cryptanalysis.  The levels progress from classic ciphers, to modern,
+easy to harder.
+
+Although there are excellent public tools, like cryptool,to perform
+the simple analysis, we strongly encourage you to try and do these
+without them for now.  We will use them in later excercises.
+
+** Please try these levels without cryptool first **
+
+
+The first level is easy.  The password for level 2 is in the file
+'krypton2'.  It is 'encrypted' using a simple rotation called ROT13.
+It is also in non-standard ciphertext format.  When using alpha characters for
+cipher text it is normal to group the letters into 5 letter clusters,
+regardless of word boundaries.  This helps obfuscate any patterns.
+
+This file has kept the plain text word boundaries and carried them to
+the cipher text.
+
+Enjoy!
+
+krypton1@bandit:/krypton/krypton1$ cat krypton2 | tr [A-Z] [N-ZA-M]
+LEVEL TWO PASSWORD ROTTEN
+krypton1@bandit:/krypton/krypton1$
+</code></pre>
+<p>就一个移位密码</p>
+<h1 id="level2"><a class="header" href="#level2">level2</a></h1>
+<p>还是一个移位密码</p>
+<pre><code>krypton2@bandit:/tmp/krypton2$ cat /etc/issue
+Ubuntu 22.04.2 LTS \n \l
+
+krypton2@bandit:/tmp/krypton2$ /krypton/krypton2/encrypt /etc/issue
+krypton2@bandit:/tmp/krypton2$ cat ciphertext
+GNGZFGXFEZXkrypton2@bandit:/tmp/krypton2$
+</code></pre>
+<p>因此</p>
+<pre><code>krypton2@bandit:/tmp/krypton2$ cat /krypton/krypton2/krypton3 | tr [A-Z] [O-ZA-N]
+CAESARISEASY
+krypton2@bandit:/tmp/krypton2$
+</code></pre>
+<h1 id="level3"><a class="header" href="#level3">level3</a></h1>
+<p>提示是统计，那就知道了</p>
+<pre><code>krypton3@bandit:/krypton/krypton3$ cat found{1..3} | tr -cd '[:alpha:]' | fold -w1 | sort | uniq -c | sort -nr
+    456 S
+    340 Q
+    301 J
+    257 U
+    246 B
+    240 N
+    227 G
+    227 C
+    210 D
+    132 Z
+    130 V
+    129 W
+     86 M
+     84 Y
+     75 T
+     71 X
+     67 K
+     64 E
+     60 L
+     55 A
+     28 F
+     19 I
+     12 O
+      4 R
+      4 H
+      2 P
+</code></pre>
+<p><img src="image-11.png" alt="alpha" />
+然后这儿有个这玩意，大概能看出来</p>
+<p>但是不完全准，来回试试基本上就可以了</p>
+<pre><code>krypton3@bandit:/krypton/krypton3$ cat krypton4 | tr 'KSVWBDGIXMNYQUCAJ' 'WELDOHNVFURPASIBT'
+WELLD ONETH ELELE LFOUP RASSW OPDIS XPUTE krypton3@bandit:/krypton/krypton3$
+</code></pre>
+<p>比如说你猜krypton里面有password，然后猜一下就行。</p>
+<h1 id="level4"><a class="header" href="#level4">level4</a></h1>
+<p>直接看wp了反正是。。。</p>
+<pre><code>cleartext
+</code></pre>
+<p>这里有个破解这种密码的<a href="https://zhuanlan.zhihu.com/p/111611977">中文参考</a>，可以看一看</p>
+<h1 id="level5"><a class="header" href="#level5">level5</a></h1>
+<p>这回，搜了个脚本儿。。。</p>
+<p>自己写是真不会。。。</p>
+<p>当然，首先需要一点点小的命令</p>
+<pre><code>cat /krypton/krypton5/found{1..3} | tr -d '[:space:]' &gt; output.txt
+</code></pre>
+<p>然后跑脚本</p>
+<p><a href="https://www.jianshu.com/p/23e3dcb3f0e9">ref1</a>
+<a href="https://blog.csdn.net/qq_51927659/article/details/116951315">REF2</a></p>
+<pre><code>import string
+
+# 加载密文
+with open('output.txt', 'r') as f:
+    cipher = f.read()
+
+#coding=utf-8
+#-*- coding:utf-8 –*-
+def c_alpha(cipher):   # 去掉非字母后的密文
+    cipher_alpha = ''
+    for i in range(len(cipher)):
+        if (cipher[i].isalpha()):
+            cipher_alpha += cipher[i]
+    return cipher_alpha
+
+# 计算cipher的重合指数
+def count_CI(cipher):
+    N = [0.0 for i in range(26)]
+    cipher = c_alpha(cipher)
+    L = len(cipher)
+    if cipher == '':
+        return 0
+    else:
+        for i in range(L):     #计算所有字母的频数，存在数组N当中
+            if (cipher[i].islower()):
+                 N[ord(cipher[i]) - ord('a')] += 1
+            else:
+                 N[ord(cipher[i]) - ord('A')] += 1
+    CI_1 = 0
+    for i in range(26):
+        CI_1 += ((N[i] / L) * ((N[i]-1) / (L-1)))
+    return CI_1
+
+# 计算秘钥长度为 key_len 的重合指数
+def count_key_len_CI(cipher,key_len):
+    un_cip = ['' for i in range(key_len)]    # un_cip 是分组
+    aver_CI = 0.0
+    count = 0
+    for i in range(len(cipher_alpha)):
+        z = i % key_len
+        un_cip[z] += cipher_alpha[i]
+    for i in range(key_len):
+        un_cip[i]= count_CI(un_cip[i])
+        aver_CI += un_cip[i]
+    aver_CI = aver_CI/len(un_cip)
+    return aver_CI
+
+## 找出最可能的前十个秘钥长度
+def pre_10(cipher):
+    M = [(1,count_CI(cipher))]+[(0,0.0) for i in range(49)]
+    for i in range(2,50):
+        M[i] = (i,abs(0.065 - count_key_len_CI(cipher,i)))
+    M = sorted(M,key = lambda x:x[1])   #按照数组第二个元素排序
+    for i in range(1,10):
+        print (M[i])
+
+F = [
+0.0651738, 0.0124248, 0.0217339,
+0.0349835, 0.1041442, 0.0197881,
+0.0158610, 0.0492888, 0.0558094,
+0.0009033, 0.0050529, 0.0331490,
+0.0202124, 0.0564513, 0.0596302,
+0.0137645, 0.0008606, 0.0497563,
+0.0515760, 0.0729357, 0.0225134,
+0.0082903, 0.0171272, 0.0013692,
+0.0145984, 0.0007836
+]       # 英文字符频率。
+
+cipher_alpha = c_alpha(cipher)
+print (&quot;秘钥长度为:&quot;)
+pre_10(cipher)
+
+</code></pre>
+<p>然后有如下输出：</p>
+<pre><code>krypton5@bandit:/tmp/krypton5$ python3 test.py
+秘钥长度为:
+(9, 0.017139818147855056)
+(36, 0.017203685000228598)
+(18, 0.01721992202177322)
+(27, 0.017472532653033286)
+(45, 0.0176209079041227)
+(33, 0.020346335439459143)
+(48, 0.020422875620895405)
+(24, 0.020464673333004946)
+(30, 0.02051347672724485)
+</code></pre>
+<p>这个也看了一下wp，九位密码是准的，但是程序输出的密钥不准，不知为什么。</p>
+<p>密钥是 keylength, 答案是 RANDOM</p>
+<h1 id="level6"><a class="header" href="#level6">level6</a></h1>
+<p>这个还是那个维吉尼亚的变形，没有太难。</p>
+<pre><code>ciphertext = 'PNUKLYLWRQKGKBE'
+key = 'EICTDGYIYZKTHNSIRFXYCPFUEOCKRN'
+
+for c, k in zip(ciphertext, key):
+    p = ord('A') + ((ord(c) - ord(k)) % 26)
+    print(chr(p), end='')
+
+print()
+</code></pre>
+<p>最后密码如下</p>
+<pre><code>LFSRISNOTRANDOM
+</code></pre>
+<h1 id="ref"><a class="header" href="#ref">ref</a></h1>
+<p>这些东西感觉知道原理就差不多了，自己写实在是没意思而且有些困难。</p>
+<p>也有不少人写脚本分析，但是感觉那些脚本分析出来的也不是很准，还是需要人工来看，反正有兴趣的可以搜搜。</p>
+<p>去网上看了看发现别人也是用工具，自己分析真是过于无聊了。
+<a href="https://bijjybox.medium.com/krypton-6e24bca1c06c">ref3</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../WarGame/bandit.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../WarGame/leviathan.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../WarGame/bandit.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../WarGame/leviathan.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
