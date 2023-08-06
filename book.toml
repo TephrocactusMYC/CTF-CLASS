@@ -7,7 +7,7 @@ title = "CTF-CLASS"
 description = "TephrocactusMYC's CTF WriteUps."
 
 [output.html]
-favicon = "favicon.ico"
+favicon = "favicon.png"
 default-theme = "rust"
 preferred-dark-theme = "ayu"
 curly-quotes = true
@@ -16,7 +16,7 @@ copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/TephrocactusMYC/CTF-CLASS"
 git-repository-icon = "fa-github"
-
+input-404 = "404.md"
 [output.html.print]
 enable = true
 
