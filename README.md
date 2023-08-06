@@ -30,7 +30,8 @@
 - [ ] Natas
 - [x] Leviathan
 题目难度的方差有点儿大，不一定适合新手
-- [ ] Krypton
+- [x] Krypton
+密码学相关，比较基础，不过不像其他的那样顺利，需要尝试
 - [ ] Narnia
 - [ ] Behemoth
 - [ ] Utumno
