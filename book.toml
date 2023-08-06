@@ -7,6 +7,7 @@ title = "CTF-CLASS"
 description = "TephrocactusMYC's CTF WriteUps."
 
 [output.html]
+favicon = "favicon.ico"
 default-theme = "rust"
 preferred-dark-theme = "ayu"
 curly-quotes = true
